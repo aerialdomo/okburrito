@@ -1,11 +1,14 @@
 #database .1 beta 
 #ok.db
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, Decimal
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 Engine = None
 Session = None
 
-engine = create_engine(#POSTGres)
+engine = create_engine(#POSTGRES)
 session = scoped_session(sessionmaker(bind=engine, autocommit = False, autoflush = False))
 
 Base = declarative_base()
