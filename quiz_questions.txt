@@ -9,7 +9,7 @@ Category: Structure
 "Which is stronger?" -Triangle -Granite - Diamond (Cost?)
 "How often do you tweet"
 
-Category: Cost
+Category: Monies
 "Are you careful with your money?"
 
 Category: Exotic
