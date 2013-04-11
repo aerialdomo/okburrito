@@ -9,9 +9,14 @@ from sqlalchemy.orm import sessionmaker
 # from sqlalchemy.dialects.postgresql.psycopg2 import psycopg2
 # from psycopg2 import psycopg2
 
+# engine = create_engine("sqlite:///ratings.db", echo=False)
+# session = scoped_session(sessionmaker(bind=engine, autocommit = False, autoflush = False))
+
 ENGINE = None
 Session = None
 
+# OMFG remember to type in column names to the python to sql magic 
+# ie) u = models.User(nickname='john', email='john@email.com')
 Base = declarative_base()
 
 class User(Base):
