@@ -2,12 +2,10 @@
 #ok.db
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Integer, String #DECIMAl!!!
 #sqlalchemy session is a handle to interact with db
-from sqlalchemy.orm import sessionmaker
-# from sqlalchemy.dialects.postgresql.psycopg2 import psycopg2
-# from psycopg2 import psycopg2
+from sqlalchemy.orm import sessionmaker, relationship, backref
 
 # engine = create_engine("sqlite:///ratings.db", echo=False)
 # session = scoped_session(sessionmaker(bind=engine, autocommit = False, autoflush = False))
@@ -27,7 +25,7 @@ class User(Base):
 	email = Column(String(64), nullable=False)
 	password = Column(String(64), nullable=False)
 	diet = Column(String(64), nullable=True)
-	location = Column(String(64), nullable=True)
+	# location = Column(String(64), nullable=True)
 
 class Burrito(Base):
 	__tablename__='burritos'
@@ -36,22 +34,26 @@ class Burrito(Base):
 	diet = Column(String(64), nullable=True)
 	resturant = Column(String(64), nullable=True)
 	self_sum = Column(String(256), nullable=True)
-	monies = Column(String(64), nullable=False) #or do i want this to be a number
-	spicy = Column(Integer)
-	structure = Column(Integer)
-	exotic = Column(Integer)
-	size = Column(Integer)
-	meat = Column(String(64), nullable=True)
+	# monies = Column(String(64), nullable=False) #or do i want this to be a number
+	# spicy = Column(Integer)
+	# structure = Column(Integer)
+	# exotic = Column(Integer)
+	# size = Column(Integer)
+	# meat = Column(String(64), nullable=True)
 
 class Question(Base):	
 	__tablename__='questions'
 
 	id = Column(Integer, primary_key=True)
 	q_id = Column(Integer)
+	text = Column(String(256)) 
 	score = Column(Integer)#Decimal(5,2)
 	weight = Column(Integer)#Decimal(2,2)
-	user_id = Column(Integer)
-	burrito_id = Column(Integer)
+	user_id = Column(Integer, ForeignKey('users.id'))
+	burrito_id = Column(Integer, ForeignKey('burritos.id'))
+
+	user = relationship('User', backref=backref('questions'), order_by=id)
+	buritto = relationship('Burrito', backref=backref('questions'), order_by=id)
 
 def connect():
 	global ENGINE
@@ -65,8 +67,8 @@ def connect():
 
 
 def main():
-    """In case we need this for something"""
-    pass
+   
+    session = connect()
 
 if __name__ == "__main__":
     main()

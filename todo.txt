@@ -1,0 +1,7 @@
+Front End
+
+
+Back End 
+- get mysql to run
+- fix score weights in model from integer to decimal
+- how to calculate the quiz score
