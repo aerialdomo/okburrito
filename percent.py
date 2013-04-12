@@ -27,10 +27,6 @@ user_info = {'user_id':1, 'answer':3}
 # need to figure the decimal thing in database
 # weight = [2, 1, 0]
 
-def question():
-	#need to pull a question from the database
-	pass
-
 #need to call the db to insert my hard coded data
 def insert_score(session):
 	#first get row
@@ -44,13 +40,6 @@ def insert_score(session):
 	#make new database row
 	session.add(new_row)
 	session.commit()
-	# print row.text, row.answer, row.user_id
-
-
-	# score = opinion * weight 
-	# print 'TYPE', type(score)
-	# update_object = Question()
-	# session.commit()
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
