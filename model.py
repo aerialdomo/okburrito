@@ -48,8 +48,9 @@ class Question(Base):
 	q_id = Column(Integer)
 	text = Column(String(256))
 	answer = Column(Integer)
-	weight = Column(Integer)#Decimal(5,2)
+	weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
 	score = Column(Integer)#Decimal(2,2)
+	category = Column(String(50))
 	user_id = Column(Integer, ForeignKey('users.id'))
 	burrito_id = Column(Integer, ForeignKey('burritos.id'))
 

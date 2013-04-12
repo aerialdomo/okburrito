@@ -5,3 +5,7 @@ Back End
 - get mysql to run
 - fix score weights in model from integer to decimal
 - how to calculate the quiz score
+
+#add user to table
+rainbow = User(screenname = "rainbowdash", email="rainbow@mlp.com", password="123", diet="vegan")
+
