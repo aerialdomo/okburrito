@@ -5,10 +5,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Integer, String #DECIMAl!!!
 #sqlalchemy session is a handle to interact with db
-from sqlalchemy.orm import sessionmaker, relationship, backref
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
-# engine = create_engine("sqlite:///ratings.db", echo=False)
-# session = scoped_session(sessionmaker(bind=engine, autocommit = False, autoflush = False))
+#no longer need to instantiate Session class
+engine = create_engine("sqlite:///ok.db", echo=False)
+session = scoped_session(sessionmaker(bind=engine, 
+									autocommit = False, 
+									autoflush = False))
 
 ENGINE = None
 Session = None
@@ -16,6 +19,7 @@ Session = None
 # OMFG remember to type in column names to the python to sql magic 
 # ie) u = models.User(nickname='john', email='john@email.com')
 Base = declarative_base()
+Base.query = session.query_property()
 
 class User(Base):
 	__tablename__ = 'users'
@@ -34,8 +38,8 @@ class Burrito(Base):
 	diet = Column(String(64), nullable=True)
 	resturant = Column(String(64), nullable=True)
 	self_sum = Column(String(256), nullable=True)
-	# monies = Column(String(64), nullable=False) #or do i want this to be a number
-	# spicy = Column(Integer)
+	monies = Column(String(64), nullable=False) #or do i want this to be a number
+	spicy = Column(Integer)
 	# structure = Column(Integer)
 	# exotic = Column(Integer)
 	# size = Column(Integer)
