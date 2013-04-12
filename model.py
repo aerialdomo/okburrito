@@ -1,4 +1,4 @@
-#database .2 beta
+#database .3 beta
 #ok.db
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -46,9 +46,10 @@ class Question(Base):
 
 	id = Column(Integer, primary_key=True)
 	q_id = Column(Integer)
-	text = Column(String(256)) 
-	score = Column(Integer)#Decimal(5,2)
-	weight = Column(Integer)#Decimal(2,2)
+	text = Column(String(256))
+	answer = Column(Integer)
+	weight = Column(Integer)#Decimal(5,2)
+	score = Column(Integer)#Decimal(2,2)
 	user_id = Column(Integer, ForeignKey('users.id'))
 	burrito_id = Column(Integer, ForeignKey('burritos.id'))
 
