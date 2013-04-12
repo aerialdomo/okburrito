@@ -22,8 +22,8 @@ from model import User, Burrito, Question
 # 		   'charmander': 1}
 
 
-user_info = [1, 1]
-opinion = [1]
+user_info = {'user_id':1, 'answer':3}
+# opinion = [1]
 # need to figure the decimal thing in database
 # weight = [2, 1, 0]
 
@@ -32,26 +32,19 @@ def question():
 	pass
 
 #need to call the db to insert my hard coded data
-
-#zip the row with the dict
 def insert_score(session):
 	#first get row
-	row = []
-	row = session.query(model.Question).get(1)
-	#define dict columns
-	print "row type",type(row)
-	print row.text
-	# fields = ['id', 'q_id', 'text','answer','weight',
-	# 		  'score','category','user_id','burrito_id']	
-	# new_object = dict(zip(fields,row))
-	# print "Type yo",type(new_object)	
-	# print new_object	  
-
+	row = session.query(model.Question).get(3)
 	#update row with user info
-	row.user_id =  user_info[0]
-	row.answer = user_info[1]
+	new_row = Question(q_id=row.q_id, 
+		text = row.text,
+		category = row.category,
+		user_id=user_info['user_id'], 
+		answer = user_info['answer'])
+	#make new database row
+	session.add(new_row)
 	session.commit()
-	print row.text, row.answer, row.user_id
+	# print row.text, row.answer, row.user_id
 
 
 	# score = opinion * weight 
