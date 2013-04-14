@@ -1,0 +1,12 @@
+<html>
+<body>
+{% for question in question_list %}
+<ul>
+	<li>Q_id : {{question.q_id}}</li>
+	<li>Text: {{question.text}}</li>
+	<li>Category: {{question.category}}</li>
+	<li>User ID: {{question.user_id}}</li>
+</ul>
+{% endfor %}	
+</body>
+</html>
