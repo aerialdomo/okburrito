@@ -21,8 +21,8 @@ from model import User, Burrito, Question
 # 		   'squirtle': 1,
 # 		   'charmander': 1}
 
-
-user_info = {'user_id':1, 'answer':3}
+# get user_id via sessions instead of hard code
+user_info = {'user_id':1, 'answer':1}
 # opinion = [1]
 # need to figure the decimal thing in database
 # weight = [2, 1, 0]
@@ -30,7 +30,7 @@ user_info = {'user_id':1, 'answer':3}
 #need to call the db to insert my hard coded data
 def insert_score(session):
 	#first get row
-	row = session.query(model.Question).get(3)
+	row = session.query(model.Question).get(2)
 	#update row with user info
 	new_row = Question(q_id=row.q_id, 
 		text = row.text,

@@ -29,21 +29,32 @@ class User(Base):
 	email = Column(String(64), nullable=False)
 	password = Column(String(64), nullable=False)
 	diet = Column(String(64), nullable=True)
+	# image 
 	# location = Column(String(64), nullable=True)
+
+class Resturant(Base):
+	__tablename__='resturants'
+	id = Column(Integer, primary_key=True)
+	name = Column(String(56))
+	neighborhood = Column(String(56)) 
+	#image
 
 class Burrito(Base):
 	__tablename__='burritos'
 
 	id = Column(Integer, primary_key=True) 
 	diet = Column(String(64), nullable=True)
-	resturant = Column(String(64), nullable=True)
+	# resturant = Column(String(64), nullable=True)
 	self_sum = Column(String(256), nullable=True)
-	monies = Column(String(64), nullable=False) #or do i want this to be a number
-	spicy = Column(Integer)
+	resturant_id = Column(Integer, ForeignKey('resturants.id'))
+	# monies = Column(String(64), nullable=False) #or do i want this to be a number
+	# spicy = Column(Integer)
 	# structure = Column(Integer)
 	# exotic = Column(Integer)
 	# size = Column(Integer)
 	# meat = Column(String(64), nullable=True)
+	# image
+	resturant = relationship('Resturant', backref=backref('resturants'), order_by=id)
 
 class Question(Base):	
 	__tablename__='questions'
@@ -54,12 +65,11 @@ class Question(Base):
 	answer = Column(Integer)
 	weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
 	score = Column(Integer)#Decimal(2,2)
-	category = Column(String(50))
+	category = Column(String(64))
 	user_id = Column(Integer, ForeignKey('users.id'))
-	burrito_id = Column(Integer, ForeignKey('burritos.id'))
-
+	
 	user = relationship('User', backref=backref('questions'), order_by=id)
-	buritto = relationship('Burrito', backref=backref('questions'), order_by=id)
+	
 
 def connect():
 	global ENGINE

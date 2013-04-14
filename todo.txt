@@ -8,9 +8,16 @@ Back End
 
 #add user to table
 rainbow = User(screenname = "rainbowdash", email="rainbow@mlp.com", password="123", diet="vegan")
+flutter = User(screenname = "fluttershy", email="flutter@mlp.com", password="123", diet="vegan")
 spike = User(screenname = "spike", email="spike@mlp.com", password="123", diet="gems")
 
 
 q1 = Question(q_id=1, text="Pick a pokemon:", category="spicy")
 q2 = Question(q_id=2, text="Do you like the beach:", category="seafood")
 q3 = Question(q_id=3, text="Can you make it rain?:", category="monies")
+
+b1 = Burrito(diet="vegan", self_sum="foods", resturant_id = 1)
+b2 = Burrito(diet="gem", self_sum="gem food", resturant_id=2)
+
+r1 = Resturant(name='papalotte', neighborhood='Mission')
+r2 = Resturant(name='el metate', neighborhood='Mission')
