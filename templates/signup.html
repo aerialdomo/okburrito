@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<form method='POST' action='/signup'>
+	Screenname:
+	<input type='text' name='screenname'>
+	Email:
+	<input type='text' name='email'>
+	Password:
+	<input type='text' name='password'>
+	Diet:
+	<input type='text' name='diet'>
+	<input type='submit'>
+</form>	
+</div>
+
+{% endblock %}

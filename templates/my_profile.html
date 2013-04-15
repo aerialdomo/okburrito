@@ -1,10 +1,13 @@
-<html>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+	
 	{% for column in profile %}
+	<h1>Hi {{column.screenname}} ! Welcome back!</h1>
 	<ul>
-	<li>{{column.screenname}}</li>
 	<li>{{column.diet}}</li>	
 	{% endfor %}
 	</ul>
-</body>	
-</html>
+	<a href='/question'>answer questions</a>
+{% endblock %}	
+s

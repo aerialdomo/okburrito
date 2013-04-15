@@ -1,5 +1,6 @@
-<html>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Log in little ponies</h1>	
 <form method='POST' action='/authenticate'>
 	Screenname:
@@ -10,7 +11,5 @@
 	<br>
 	<input type='submit'>
 </form>
-	<a href='signup.html'>Sign off your soul today!</a>	
-
-</body>
-</html>
+	<a href='/signup.html'>Sign off your soul today!</a>	
+{% endblock%}

@@ -1,12 +1,16 @@
 <html>
 <body>
+<form method='POST' action='/insert_score'>
 {% for question in question_list %}
 <ul>
-	<li>Q_id : {{question.q_id}}</li>
 	<li>Text: {{question.text}}</li>
-	<li>Category: {{question.category}}</li>
+	<input type='text' name='answer'>
+	<il> Answer: {{question.answer}}
 	<li>User ID: {{question.user_id}}</li>
+
 </ul>
-{% endfor %}	
+{% endfor %}
+	<input type='submit'>
+</form>	
 </body>
 </html>
