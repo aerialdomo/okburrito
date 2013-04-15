@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
 import model 
-import sqlalchemy.exc
+from sqlalchemy.orm.exc import NoResultFound
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,10 +20,15 @@ def  signup():
 def create_user():
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
 							password = request.form['password'], diet = request.form['diet'])
-	model.session.add(new_user)
-	model.session.commit()
-	session['uid']=new_user.id
-	return redirect('my_profile', )
+	#checks to see if this user is already in the db
+	if new_user.screenname != model.User.screenname and new_user.email != model.User.email :
+		model.session.add(new_user)
+		model.session.commit()
+		session['uid']=new_user.id
+		return redirect('my_profile', )
+	else:
+		print "Duplicate screenname || email"	
+		return redirect('login')
 
 @app.route('/login')
 def login():
@@ -40,16 +45,17 @@ def logout():
 def authenticate():
 	form_screenname = request.form['screenname']
 	form_password = request.form['password']
-	if  form_screenname == model.User.screenname:
+	#checks to see if user even exists in db
+	try:
 		#querying row from db so that we can compare form data to existing data
 		row = model.session.query(model.User).filter_by(screenname = form_screenname).one()
 		#write a thing that says if no screenname found its ok, just redirect to signup
 		if (form_screenname == row.screenname) and (form_password == row.password):
-			session['uid'] = row.id
-			return redirect(url_for('my_profile',))	
+				session['uid'] = row.id
+				return redirect(url_for('my_profile',))	
 	#else dosen't work yet	
-	else:
-		flash('User not found. How about you give me your soul?')
+	except NoResultFound:
+		# flash('User not found. How about you give me your soul?')
 		print 'Error biatchs!'
 		return render_template('/signup.html')
 
@@ -59,18 +65,6 @@ def my_profile():
 	profile	= model.session.query(model.User).filter_by(id = session['uid']).all()
 	print "This be my profile yo"
 	return render_template('/my_profile.html', profile = profile)
-
-# @app.route('/question')
-# def show_question():
-# 	session['uid']	
-# 	question_list = model.session.query(model.Question).all()
-# 	return render_template('/question.html', question_list = question_list)
-
-# @app.route('/question')
-# def get_question():
-# 	session['uid']
-# 	row = session.query(model.Question).get(1)
-# 	return render_template('/question.html', row = question_list)
 
 @app.route('/question', methods=['POST'])
 def insert_score():

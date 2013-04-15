@@ -13,6 +13,7 @@ What to do next:
 - fix questions link
 - fix signout flash message
 - fix sign in 'user not found' flash
+- logging errors, exceptions,logins, logout outs, ALL THE THINGS
 
 
 
