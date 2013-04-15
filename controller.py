@@ -18,18 +18,27 @@ def  signup():
 
 @app.route('/signup', methods=['POST'])	
 def create_user():
+	# pull query from db to see if this use exists
+	# use if statements
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
 							password = request.form['password'], diet = request.form['diet'])
-	#checks to see if this user is already in the db
-	if new_user.screenname != model.User.screenname and new_user.email != model.User.email :
-		model.session.add(new_user)
-		model.session.commit()
-		session['uid']=new_user.id
-		return redirect('my_profile', )
-	else:
-		print "Duplicate screenname || email"	
-		return redirect('login')
+	#is this query right for matching screenname or email???
+	check = model.session.query(model.User).filter_by(screenname = new_user.screenname, 
+														email=new_user.email).all()
 
+	#check is a list, need check[0].screenname, check[0].email to access info in rows
+	for i in range(len(check)):
+		if new_user.screenname == check[i].screenname or new_user.email == check[i].email:
+			#checks to see if this user is already in the 
+			print "Duplicate screenname || email"	
+			return redirect('login',)
+			
+	print 'things are A-OK'
+	model.session.add(new_user)
+	model.session.commit()
+	session['uid']=new_user.id
+	return redirect('my_profile', )
+			
 @app.route('/login')
 def login():
 	return	render_template('/login.html',)
@@ -53,7 +62,6 @@ def authenticate():
 		if (form_screenname == row.screenname) and (form_password == row.password):
 				session['uid'] = row.id
 				return redirect(url_for('my_profile',))	
-	#else dosen't work yet	
 	except NoResultFound:
 		# flash('User not found. How about you give me your soul?')
 		print 'Error biatchs!'
