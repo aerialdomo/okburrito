@@ -22,7 +22,7 @@ from model import User, Burrito, Question
 # 		   'charmander': 1}
 
 # get user_id via sessions instead of hard code
-user_info = {'user_id':1, 'answer':1}
+user_info = {'user_id':3, 'answer':1}
 # opinion = [1]
 # need to figure the decimal thing in database
 # weight = [2, 1, 0]

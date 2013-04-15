@@ -23,7 +23,7 @@ def create_user():
 	model.session.add(new_user)
 	model.session.commit()
 	session['uid']=new_user.id
-	return redirect(url_for('/my_profile'))
+	return redirect('my_profile', )
 
 @app.route('/login')
 def login():
