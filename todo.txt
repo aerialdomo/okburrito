@@ -1,10 +1,21 @@
 Front End
+- make log out not show in signup page
 
 
 Back End 
 - get mysql to run
 - fix score weights in model from integer to decimal
 - how to calculate the quiz score
+
+What to do next:
+- fix login error for user not found x
+- fix signin error for multiple users with same sn
+- fix questions link
+- fix signout flash message
+- fix sign in 'user not found' flash
+
+
+
 
 #add user to table
 rainbow = User(screenname = "rainbowdash", email="rainbow@mlp.com", password="123", diet="vegan")

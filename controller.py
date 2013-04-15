@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
 import model 
+import sqlalchemy.exc
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -13,7 +14,6 @@ def index():
 
 @app.route('/signup.html')
 def  signup():
-	# new_user = User()
 	return render_template('/signup.html')
 
 @app.route('/signup', methods=['POST'])	
@@ -32,23 +32,26 @@ def login():
 @app.route('/logout')
 def logout():
 	session.pop('uid', None)
-	flash('You were logged out')
+	#flash is not working!
+	# flash('You were logged out')
 	return redirect(url_for('login'))	
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
 	form_screenname = request.form['screenname']
 	form_password = request.form['password']
-	#querying row from db so that we can compare form data to existing data
-	row = model.session.query(model.User).filter_by(screenname = form_screenname).one()
-	#write a thing that says if no screenname found its ok, just redirect to signup
-	if (form_screenname == row.screenname) and (form_password == row.password):
-		session['uid'] = row.id
-		return redirect(url_for('my_profile',))	
+	if  form_screenname == model.User.screenname:
+		#querying row from db so that we can compare form data to existing data
+		row = model.session.query(model.User).filter_by(screenname = form_screenname).one()
+		#write a thing that says if no screenname found its ok, just redirect to signup
+		if (form_screenname == row.screenname) and (form_password == row.password):
+			session['uid'] = row.id
+			return redirect(url_for('my_profile',))	
 	#else dosen't work yet	
 	else:
-		print 'sdfsdfs'
-		return redirect(url_for('/signup'))	
+		flash('User not found. How about you give me your soul?')
+		print 'Error biatchs!'
+		return render_template('/signup.html')
 
 @app.route('/my_profile')
 def my_profile():
