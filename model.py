@@ -13,16 +13,18 @@ session = scoped_session(sessionmaker(bind=engine,
 									autocommit = False, 
 									autoflush = False))
 
+
 ENGINE = None
 Session = None
 
 # OMFG remember to type in column names to the python to sql magic 
 # ie) u = models.User(nickname='john', email='john@email.com')
 Base = declarative_base()
+Base.metadata.create_all(engine)
 Base.query = session.query_property()
 
 class User(Base):
-	__tablename__ = 'users'
+	__tablename__='users'
 
 	id = Column(Integer, primary_key=True) 
 	screenname = Column(String(64), nullable=False)
@@ -62,15 +64,33 @@ class Question(Base):
 	id = Column(Integer, primary_key=True)
 	q_id = Column(Integer)
 	text = Column(String(256))
-	answer = Column(Integer)
-	weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
-	score = Column(Integer)#Decimal(2,2)
 	category = Column(String(64))
-	user_id = Column(Integer, ForeignKey('users.id'))
-	
-	user = relationship('User', backref=backref('questions'), order_by=id)
-	
 
+class Choice(Base):
+	__tablename__='choices'
+
+	id = Column(Integer, primary_key=True)
+	text = Column(String(256))
+	question_id= Column(Integer, ForeignKey('questions.id'))
+	
+	question = relationship('Question', backref=backref('choices'), order_by=id)
+
+class Answer(Base):
+	__tablename__='answers'
+
+	id = Column(Integer, primary_key=True)	
+	answer = Column(Integer)
+	# weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
+	# score = Column(Integer)#Decimal(2,2)	
+	question_id= Column(Integer, ForeignKey('questions.id'))
+	choice_id = Column(Integer, ForeignKey('choices.id'))
+	user_id = Column(Integer, ForeignKey('users.id'))
+
+	choice = relationship('Choice', backref=backref('answers'), order_by=id)
+	question = relationship('Question', backref=backref('answers'), order_by=id)
+	user = relationship('User', backref=backref('answers'), order_by=id)
+
+	
 def connect():
 	global ENGINE
 	global Session

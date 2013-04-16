@@ -32,9 +32,9 @@ flutter = User(screenname = "fluttershy", email="flutter@mlp.com", password="123
 spike = User(screenname = "spike", email="spike@mlp.com", password="123", diet="gems")
 
 
-q1 = Question(q_id=1, text="Pick a pokemon:", category="spicy")
-q2 = Question(q_id=2, text="Do you like the beach:", category="seafood")
-q3 = Question(q_id=3, text="Can you make it rain?:", category="monies")
+q1 = Question(q_id=1, text='Pick a pokemon:', choice_1='Pickachu', choice_2='Squirtle, choice_3 ='Charmander', category='spicy')
+q2 = Question(q_id=2, text="Do you like the beach:", choice_1='BEST THING EVAR!!', choice_2='Meh', choice_3='Worse thing ever' category="seafood")
+q3 = Question(q_id=3, text="Can you make it rain?:", choice_1='Like is hurricane', choice_2='Dry as a desert', choice_3='Define rain' category="monies")
 
 b1 = Burrito(diet="vegan", self_sum="foods", resturant_id = 1)
 b2 = Burrito(diet="gem", self_sum="gem food", resturant_id=2)

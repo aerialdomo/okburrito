@@ -1,5 +1,5 @@
 import model
-from model import User, Burrito, Question
+from model import User, Burrito, Question, Answer, Choice
 
 # remember that SQL Datatypes are INTEGERS!! NEED TO CHANGE TO DECIMAL!
 
@@ -16,6 +16,9 @@ from model import User, Burrito, Question
 # insert score into a Category in db
 # Category needs to be displayed in bar graph
 
+#pull question from questions table
+#insert it into answers table with user_id, qestion_is and choice_id
+
 
 # opinion = {'pikachu': 1,
 # 		   'squirtle': 1,
@@ -27,23 +30,35 @@ user_info = {'user_id':3, 'answer':1}
 # need to figure the decimal thing in database
 # weight = [2, 1, 0]
 
+def ask_question(session):
+	#first get rows
+	quid = 1
+	q_row = session.query(model.Question).get(quid)
+	c_row = session.query(model.Choice).filter_by(question_id = q_row.id).all()
+	print q_row.text
+	# print 'TYPE', type(c_row)
+	for i in range(len(c_row)):
+		print c_row[i].text
+	return q_row, c_row	
+
 #need to call the db to insert my hard coded data
-def insert_score(session):
-	#first get row
-	row = session.query(model.Question).get(2)
-	#update row with user info
-	new_row = Question(q_id=row.q_id, 
-		text = row.text,
-		category = row.category,
-		user_id=user_info['user_id'], 
-		answer = user_info['answer'])
+def insert_score(session, q_row, c_row):
+	
+	# update row with user info
+	new_row = Answer(question_id = 'q_row.id', 
+		#value will come in from radio button
+		choice_id = 'c_row.id',
+		# answer = 'c_weight',
+		user_id=user_info['user_id'])
+	print new_row
 	#make new database row
-	session.add(new_row)
-	session.commit()
+	# session.add(new_row)
+	# session.commit()
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
-  insert_score(session)
+	ask_question(session)
+	insert_score(session, q_row, c_row)
 
 
 if __name__ == "__main__":

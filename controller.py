@@ -81,10 +81,16 @@ def my_profile():
 
 @app.route('/show_question') #this is a GET request
 def show_question():
-	row = model.session.query(model.Question).filter_by(user_id=None).all()
+	quid=1
+	q_row = model.session.query(model.Question).get(quid)
+	c_row = model.session.query(model.Choice).filter_by(question_id = q_row.id).all()
+	print q_row.text
+	# print 'TYPE', type(c_row)
+	# for i in range(len(c_row)):
+	# 	print c_row[i].text
 	print 'Running through show_question'
-	print "lhdfkjsdhkjsd", type(row)
-	return render_template('/question.html', question_list=row)
+	# print "lhdfkjsdhkjsd", type(row)
+	return render_template('/question.html', question = q_row, choice=c_row)
 
 @app.route('/question', methods=['POST'])
 def insert_score():
