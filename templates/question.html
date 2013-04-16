@@ -3,19 +3,16 @@
 {% block content %}
 Watsup 
 <form method='POST' action='/insert_score'>
-	{% for question in question_list %}
-	<ul>
-	<li>Text: {{question.text}}</li>
-	<input type='text' name='answer'>
-	</ul>
-	{% endfor %}
+	{% for i in question %}
+		{{ i.text }}
+		{% for radio in choice %}
+		<ul>
+		<li><input type='radio' name='answer'>{{radio.text}}</li>
+	
+		</ul>
+		{% endfor %}
+	{% endfor %}	
 	<input type='submit'>
 </form>	
 {% endblock %}
-
-<!--
-	{% if question.user_id != None %}
-		dislay nothing
-	{% else %}	
-		{% endif %}
-!-->		
+		
