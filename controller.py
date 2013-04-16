@@ -82,9 +82,10 @@ def my_profile():
 @app.route('/show_question') #this is a GET request
 def show_question():
 	quid=1
-	q_row = model.session.query(model.Question).get(quid)
-	c_row = model.session.query(model.Choice).filter_by(question_id = q_row.id).all()
-	print q_row.text
+	q_row = model.session.query(model.Question).all()
+	for i in q_row:
+		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
+	print q_row[1].text
 	# print 'TYPE', type(c_row)
 	# for i in range(len(c_row)):
 	# 	print c_row[i].text
