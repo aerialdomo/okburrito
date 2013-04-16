@@ -15,7 +15,15 @@ What to do next:
 - fix sign in 'user not found' flash
 - logging errors, exceptions,logins, logout outs, ALL THE THINGS
 
+Bugs:
+P1:
+- when correct sn and wrong pw is entered, ValueError is thrown.
 
+
+P2:
+- app breaks when forms have no data, on submit it will go to profile, and wont log out
+- mke its so that app wont insert new users when submit button clicks when text boxes are empty
+- fix submit button in login page, with nothing in text boxes it got to signup
 
 
 #add user to table

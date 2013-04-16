@@ -1,16 +1,21 @@
-<html>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+Watsup 
 <form method='POST' action='/insert_score'>
-{% for question in question_list %}
-<ul>
+	{% for question in question_list %}
+	<ul>
 	<li>Text: {{question.text}}</li>
 	<input type='text' name='answer'>
-	<il> Answer: {{question.answer}}
-	<li>User ID: {{question.user_id}}</li>
-
-</ul>
-{% endfor %}
+	</ul>
+	{% endfor %}
 	<input type='submit'>
 </form>	
-</body>
-</html>
+{% endblock %}
+
+<!--
+	{% if question.user_id != None %}
+		dislay nothing
+	{% else %}	
+		{% endif %}
+!-->		

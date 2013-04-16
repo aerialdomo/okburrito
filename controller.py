@@ -23,8 +23,11 @@ def create_user():
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
 							password = request.form['password'], diet = request.form['diet'])
 	#is this query right for matching screenname or email???
+	#?????????????????????
 	check = model.session.query(model.User).filter_by(screenname = new_user.screenname, 
 														email=new_user.email).all()
+	# sn_check = model.session.query(model.User).filter_by(screenname=new_user.screenname).all()
+	# e_check = model.session.query(model.User).filter_by(email=new_user.email).all()
 
 	#check is a list, need check[0].screenname, check[0].email to access info in rows
 	for i in range(len(check)):
@@ -58,14 +61,16 @@ def authenticate():
 	try:
 		#querying row from db so that we can compare form data to existing data
 		row = model.session.query(model.User).filter_by(screenname = form_screenname).one()
-		#write a thing that says if no screenname found its ok, just redirect to signup
 		if (form_screenname == row.screenname) and (form_password == row.password):
 				session['uid'] = row.id
 				return redirect(url_for('my_profile',))	
 	except NoResultFound:
-		# flash('User not found. How about you give me your soul?')
-		print 'Error biatchs!'
+		flash('User not found. How about you give me your soul?')
+		print 'Error, such poor unfortunate souls. In Pain! In Need!'
 		return render_template('/signup.html')
+	
+	print 'Something has gone horribly wrong with authenticate!!!!!'	
+	return	redirect('/')
 
 @app.route('/my_profile')
 def my_profile():
@@ -74,10 +79,17 @@ def my_profile():
 	print "This be my profile yo"
 	return render_template('/my_profile.html', profile = profile)
 
+@app.route('/show_question') #this is a GET request
+def show_question():
+	row = model.session.query(model.Question).filter_by(user_id=None).all()
+	print 'Running through show_question'
+	print "lhdfkjsdhkjsd", type(row)
+	return render_template('/question.html', question_list=row)
+
 @app.route('/question', methods=['POST'])
 def insert_score():
 	#first get row
-	row = session.query(model.Question).get(1)
+	row = model.session.query(model.Question).all()
 	user_id = session['uid']
 	#update row with user info
 	new_row = Question(q_id=row.q_id, 
