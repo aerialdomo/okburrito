@@ -46,17 +46,24 @@ class Burrito(Base):
 
 	id = Column(Integer, primary_key=True) 
 	diet = Column(String(64), nullable=True)
-	# resturant = Column(String(64), nullable=True)
+	resturant = Column(String(64), nullable=True)
 	self_sum = Column(String(256), nullable=True)
 	resturant_id = Column(Integer, ForeignKey('resturants.id'))
-	# monies = Column(String(64), nullable=False) #or do i want this to be a number
-	# spicy = Column(Integer)
+
+	image = Column(VARCHAR(512))
+	resturant = relationship('Resturant', backref=backref('resturants'), order_by=id)
+
+class Burrito_Attribute(Base):
+	__tablename__='burrito_attributes'
+
+	id = Column(Integer, primary_key=True)
+	name = Column(String(64))
+	monies = Column(Integer, nullable=False)
+	spicy = Column(Integer)
 	# structure = Column(Integer)
 	# exotic = Column(Integer)
 	# size = Column(Integer)
 	# meat = Column(String(64), nullable=True)
-	image = Column(VARCHAR(512))
-	resturant = relationship('Resturant', backref=backref('resturants'), order_by=id)
 
 class Question(Base):	
 	__tablename__='questions'
@@ -71,24 +78,24 @@ class Choice(Base):
 
 	id = Column(Integer, primary_key=True)
 	text = Column(String(256))
-	question_id= Column(Integer, ForeignKey('questions.id'))
+	score = Column(Integer) #(1, 0, -1)
+	question_id = Column(Integer, ForeignKey('questions.id'))
 	
 	question = relationship('Question', backref=backref('choices'), order_by=id)
 
-class Answer(Base):
-	__tablename__='answers'
+class User_Choice(Base): 
+	__tablename__='user_choices'
 
 	id = Column(Integer, primary_key=True)	
-	answer = Column(Integer)#fix the naming on this, it's confusing!!!!!
 	# weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
 	# score = Column(Integer)#Decimal(2,2)	
 	question_id= Column(Integer, ForeignKey('questions.id'))
 	choice_id = Column(Integer, ForeignKey('choices.id'))
 	user_id = Column(Integer, ForeignKey('users.id'))
 
-	choice = relationship('Choice', backref=backref('answers'), order_by=id)
-	question = relationship('Question', backref=backref('answers'), order_by=id)
-	user = relationship('User', backref=backref('answers'), order_by=id)
+	choice = relationship('Choice', backref=backref('user_choices'), order_by=id)
+	question = relationship('Question', backref=backref('user_choices'), order_by=id)
+	user = relationship('User', backref=backref('user_choices'), order_by=id)
 
 	
 def connect():
