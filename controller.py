@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
+from flaskext.gravatar import Gravatar 
 import model 
 from sqlalchemy.orm.exc import NoResultFound
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -77,6 +78,10 @@ def my_profile():
 
 	profile	= model.session.query(model.User).filter_by(id = session['uid']).all()
 	print "This be my profile yo"
+
+	gravatar = Gravatar(app, 
+						size = 100)
+
 	return render_template('/my_profile.html', profile = profile)
 
 @app.route('/show_question') #this is a GET request
