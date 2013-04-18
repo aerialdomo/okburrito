@@ -1,3 +1,8 @@
+Goals for this week:
+- collect and insert burrito data
+- display data back in correct form
+- burrito pictures needed
+
 todo:
 - fix questions page
 - insert choices into db
@@ -16,11 +21,7 @@ Back End
 - how to calculate the quiz score
 
 What to do next:
-- fix login error for user not found x
-- fix signin error for multiple users with same sn
-- fix questions link
-- fix signout flash message
-- fix sign in 'user not found' flash
+
 - logging errors, exceptions,logins, logout outs, ALL THE THINGS
 
 Bugs:

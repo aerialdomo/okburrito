@@ -3,11 +3,11 @@
 {% block content %}
 <h1>Go ahead, unwrap these burrito</h1>
 
-	{% for i in b_row %}
+	{% for burrito in burritrows %}
 		<ul>
-		<a href='/one_sexy_burrito?id={{i.id}}'><li>{{i.id}}</li></a>
-		<li>{{i.diet}}</li>
-		<li>{{i.self_sum}}</li>
+		<a href='/one_sexy_burrito/{{burrito.id}}'><li>{{burrito.id}}</li></a>
+		<li>{{burrito.diet}}</li>
+		<li>{{burrito.self_sum}}</li>
 		</ul>
 	{% endfor %}
 {% endblock %}

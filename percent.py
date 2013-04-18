@@ -32,14 +32,20 @@ user_info = {'user_id':3, 'answer':1}
 
 def ask_question(session):
 	#first get rows
-	quid = 1
-	q_row = session.query(model.Question).get(quid)
-	c_row = session.query(model.Choice).filter_by(question_id = q_row.id).all()
-	print q_row.text
-	# print 'TYPE', type(c_row)
-	for i in range(len(c_row)):
-		print c_row[i].text
-	return q_row, c_row	
+	
+	q_row = model.session.query(model.Question).all()
+	#REMEMBER! q_row is a list
+	for i in q_row:
+		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
+	# print 'Running through show_question'
+	
+	# q_row = session.query(model.Question).get(quid)
+	# c_row = session.query(model.Choice).filter_by(question_id = q_row.id).all()
+	# print q_row.text
+	# # print 'TYPE', type(c_row)
+	# for i in range(len(c_row)):
+	# 	print c_row[i].text
+	return (q_row, c_row)	
 
 #need to call the db to insert my hard coded data
 def insert_score(session, q_row, c_row):

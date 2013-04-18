@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ok.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@localhost/burrito"
 db = SQLAlchemy(app)
 app.secret_key = 'stuff'
 
@@ -117,16 +117,17 @@ def insert_score():
 	session.commit()	
 	return render_template('/question.html', new_row=question_list)
 
-# @app.route('/all_sexy_burrito')
-# def all_sexy_burrito():
-# 	b_row = model.session.query(model.Burrito).all()
-# 	return render_template('/all_sexy_burrito.html', b_row=b_row) 
+@app.route('/all_sexy_burrito')
+def all_sexy_burrito():
+	b_row = model.session.query(model.Burrito).all()
+	return render_template('/all_sexy_burrito.html', burritrows=b_row) 
 
-# @app.route('/one_sexy_burrito?id={{i.id}}')	
-# def one_sexy_burrito():
-# 	sexy_b = model.session.query(model.Burrito).get(#ID)
-# 	return request.args.get('i.id')
-
+#id is included as part of hte url
+@app.route('/one_sexy_burrito/<int:id>')
+def one_sexy_burrito(id):
+	sexy_b = model.session.query(model.Burrito).get(id)
+	print sexy_b
+	return "%d"%id
 
 if __name__ == "__main__":
 	app.run(debug = True)

@@ -8,7 +8,7 @@ from sqlalchemy import Column, Integer, String #DECIMAl!!!
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 #no longer need to instantiate Session class
-engine = create_engine("sqlite:///ok.db", echo=False)
+engine = create_engine("mysql://christinaliu@localhost/burrito", echo=False)
 session = scoped_session(sessionmaker(bind=engine, 
 									autocommit = False, 
 									autoflush = False))
@@ -20,7 +20,7 @@ Session = None
 # OMFG remember to type in column names to the python to sql magic 
 # ie) u = models.User(nickname='john', email='john@email.com')
 Base = declarative_base()
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 Base.query = session.query_property()
 
 class User(Base):
@@ -79,7 +79,7 @@ class Answer(Base):
 	__tablename__='answers'
 
 	id = Column(Integer, primary_key=True)	
-	answer = Column(Integer)
+	answer = Column(Integer)#fix the naming on this, it's confusing!!!!!
 	# weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
 	# score = Column(Integer)#Decimal(2,2)	
 	question_id= Column(Integer, ForeignKey('questions.id'))
