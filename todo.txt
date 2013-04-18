@@ -2,6 +2,13 @@ Goals for this week:
 - collect and insert burrito data
 - display data back in correct form
 - burrito pictures needed
+- password: carneasada
+-csrf?????
+
+
+Things to ask Liz:
+- should i be using WTF forms?
+- not using an API, is that bad?
 
 todo:
 - fix questions page
@@ -52,8 +59,8 @@ c4 = Choice(text="BEST THING EVAR!!", question_id=2)
 c5 = Choice(text="Meh", question_id=2) 
 c6 = Choice(text="Worse thing ever", question_id=2)
 
-b1 = Burrito(diet="vegan", self_sum="foods", resturant_id = 1)
-b2 = Burrito(diet="gem", self_sum="gem food", resturant_id=2)
+b1 = Burrito(diet="vegan", self_sum="foods", resturant_id = 1, image="http://s3-media3.ak.yelpcdn.com/bphoto/eKBq5WSoQVZabdWyZf25qQ/l.jpg")
+b2 = Burrito(diet="gem", self_sum="gem food", resturant_id=2, image="http://s3-media2.ak.yelpcdn.com/bphoto/xPGnuyrEqLCsV9Mo70mc-Q/l.jpg")
 
 r1 = Resturant(name='papalotte', neighborhood='Mission')
 r2 = Resturant(name='el metate', neighborhood='Mission')

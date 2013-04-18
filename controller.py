@@ -126,8 +126,8 @@ def all_sexy_burrito():
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
 	sexy_b = model.session.query(model.Burrito).get(id)
-	print sexy_b
-	return "%d"%id
+	print 'vvvvvvvv', sexy_b.self_sum
+	return render_template('/one_sexy_burrito.html', sexy_b=sexy_b)
 
 if __name__ == "__main__":
 	app.run(debug = True)

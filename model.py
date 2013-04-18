@@ -3,7 +3,7 @@
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Integer, String #DECIMAl!!!
+from sqlalchemy import Column, Integer, String, VARCHAR #DECIMAl!!!
 #sqlalchemy session is a handle to interact with db
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
@@ -55,7 +55,7 @@ class Burrito(Base):
 	# exotic = Column(Integer)
 	# size = Column(Integer)
 	# meat = Column(String(64), nullable=True)
-	# image
+	image = Column(VARCHAR(512))
 	resturant = relationship('Resturant', backref=backref('resturants'), order_by=id)
 
 class Question(Base):	

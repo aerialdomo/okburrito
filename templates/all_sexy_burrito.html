@@ -4,8 +4,9 @@
 <h1>Go ahead, unwrap these burrito</h1>
 
 	{% for burrito in burritrows %}
-		<ul>
-		<a href='/one_sexy_burrito/{{burrito.id}}'><li>{{burrito.id}}</li></a>
+		<ul class = 'inline'>
+		<a href='/one_sexy_burrito/{{burrito.id}}'><li>{{burrito.id}}</li>
+		<li><img src='{{burrito.image}}' class='img-rounded'/></a></li>
 		<li>{{burrito.diet}}</li>
 		<li>{{burrito.self_sum}}</li>
 		</ul>
