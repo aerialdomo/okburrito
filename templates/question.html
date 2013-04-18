@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Watsup 
+
 <form method='POST' action='/insert_score'>
-	{% for i in question %}
-		{{ i.text }}
-		{% for radio in choice %}
-		<ul>
-		<li><input type='radio' name='answer'>{{radio.text}}</li>
 	
-		</ul>
-		{% endfor %}
+	{% for question in q_row %}
+		<h2>{{ question.text }}</h2>
+		{% for answer in question.choices %}
+			<input type='radio' radiogroup='{{question.id}}' name='answer'> {{answer.text}}</radiogroup><br>
+		{% endfor %}	
 	{% endfor %}	
 	<input type='submit'>
 </form>	

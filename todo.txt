@@ -1,3 +1,11 @@
+todo:
+- fix questions page
+- insert choices into db
+- do matching calculation
+- fix log in
+-
+
+
 Front End
 - make log out not show in signup page
 

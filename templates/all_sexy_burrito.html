@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Go ahead, unwrap these burrito</h1>
+
+	{% for i in b_row %}
+		<ul>
+		<a href='/one_sexy_burrito?id={{i.id}}'><li>{{i.id}}</li></a>
+		<li>{{i.diet}}</li>
+		<li>{{i.self_sum}}</li>
+		</ul>
+	{% endfor %}
+{% endblock %}

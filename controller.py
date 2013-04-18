@@ -83,13 +83,23 @@ def my_profile():
 def show_question():
 	q_row = model.session.query(model.Question).all()
 	#REMEMBER! q_row is a list
+	#i need responses list to glom the c_row results together to pass into html
+	# question= []
+	responses = []
 	for i in q_row:
 		print i.text
+		# question.append(q_row)
+		# question = range(len(question))
+		# print question
 		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
+		# print 'xxxxxxxxxxxxxxxxxxx',type(c_row), c_row
+		responses.append(c_row)
 		for j in range(len(c_row)):
+			choice = c_row[j]
+			# print type(choice)
 			print c_row[j].text
-	print 'Running through show_question'
-	return render_template('/question.html', question = q_row, choice=c_row[j].text)
+			# print 'Running through show_question'
+	return render_template('/question.html', responses=responses, q_row = q_row)
 
 @app.route('/question', methods=['POST'])
 def insert_score():
@@ -106,6 +116,16 @@ def insert_score():
 	session.add(new_row)
 	session.commit()	
 	return render_template('/question.html', new_row=question_list)
+
+# @app.route('/all_sexy_burrito')
+# def all_sexy_burrito():
+# 	b_row = model.session.query(model.Burrito).all()
+# 	return render_template('/all_sexy_burrito.html', b_row=b_row) 
+
+# @app.route('/one_sexy_burrito?id={{i.id}}')	
+# def one_sexy_burrito():
+# 	sexy_b = model.session.query(model.Burrito).get(#ID)
+# 	return request.args.get('i.id')
 
 
 if __name__ == "__main__":
