@@ -4,13 +4,15 @@
 <h1>Log in little ponies</h1>	
 
 <form method='POST' action='/authenticate'>
-	Screenname:
-	<input type='text' name='screenname'></input>
+	<fieldset>
+	<label>Screenname:</label>
+	<input type='text' placeholder='I know you are hungry' name='screenname'></input>
 	<br>
-	Password:
-	<input type='text' name='password'></input>
+	<label>Password:</label>
+	<input type='text' placeholder='Give me all your secrets' name='password'></input>
 	<br>
-	<input type='submit'>
+	<button type='submit' class="btn">Submit</button>
+	</fieldset>
 </form>
 
 	<a href='/signup.html'>Sign off your soul today!</a>	

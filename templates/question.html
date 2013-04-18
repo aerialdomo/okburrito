@@ -3,14 +3,14 @@
 {% block content %}
 
 <form method='POST' action='/insert_score'>
-	
 	{% for question in q_row %}
 		<h2>{{ question.text }}</h2>
 		{% for answer in question.choices %}
 			<input type='radio' radiogroup='{{question.id}}' name='answer'> {{answer.text}}</radiogroup><br>
 		{% endfor %}	
 	{% endfor %}	
-	<input type='submit'>
+	<button type='submit' class="btn">Submit</button>
 </form>	
+
 {% endblock %}
 		
