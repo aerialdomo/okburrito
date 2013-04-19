@@ -78,7 +78,7 @@ class Choice(Base):
 
 	id = Column(Integer, primary_key=True)
 	text = Column(String(256))
-	score = Column(Integer) #(1, 0, -1)
+	score = Column(Integer) 			#(1, 0, -1)
 	question_id = Column(Integer, ForeignKey('questions.id'))
 	
 	question = relationship('Question', backref=backref('choices'), order_by=id)

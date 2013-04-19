@@ -99,7 +99,9 @@ def show_question():
 		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
 		# print 'xxxxxxxxxxxxxxxxxxx',type(c_row), c_row
 		responses.append(c_row)
-		for j in range(len(c_row)):
+		# Created idx_c_row for for loop optimization.
+		idx_c_row  = range(len(c_row))
+		for j in idx_c_row:
 			choice = c_row[j]
 			# print type(choice)
 			print c_row[j].text
