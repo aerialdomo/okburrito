@@ -7,8 +7,8 @@
 	{% for question in q_row %}
 		<h2>{{ question.text }}</h2>
 		{% for answer in question.choices %}
-			<input type='radio' id='answer{{question.id}}' name='{{question.id}}' value='{{question.id}}'>
-			<label for='answer{{question.id}}' class='radio'>{{answer.text}}</label>		
+			<input type='radio' id='{{question.id}}' name='{{question.id}}' value='{{answer.id}}'>
+			<label for='{{answer.id}}' class='radio'>{{answer.text}}</label>		
 		{% endfor %}	
 	{% endfor %}	
 	
