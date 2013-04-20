@@ -1,13 +1,24 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
 from flaskext.gravatar import Gravatar 
-import model 
-from sqlalchemy.orm.exc import NoResultFound
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.orm.exc import NoResultFound
+
+
+import model 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@localhost/burrito"
 db = SQLAlchemy(app)
 app.secret_key = 'stuff'
+
+def get_or_create(session, model_class, **kwargs):
+	instance = model.session.query(model_class).filter_by(**kwargs).first()
+	if instance:
+		return instance
+	else:
+		#this creates a new model object
+		instance = model_class(**kwargs)
+		return instance	
 
 @app.route('/')
 def index():
@@ -24,11 +35,8 @@ def create_user():
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
 							password = request.form['password'], diet = request.form['diet'])
 	#is this query right for matching screenname or email???
-	#?????????????????????
 	check = model.session.query(model.User).filter_by(screenname = new_user.screenname, 
 														email=new_user.email).all()
-	# sn_check = model.session.query(model.User).filter_by(screenname=new_user.screenname).all()
-	# e_check = model.session.query(model.User).filter_by(email=new_user.email).all()
 
 	#check is a list, need check[0].screenname, check[0].email to access info in rows
 	for i in range(len(check)):
@@ -87,49 +95,43 @@ def my_profile():
 @app.route('/show_question') #this is a GET request
 def show_question():
 	q_row = model.session.query(model.Question).all()
-	#REMEMBER! q_row is a list
-	#i need responses list to glom the c_row results together to pass into html
-	# question= []
+	#REMEMBER! q_row is a list.
+	# I need responses list to glom the c_row results together to pass into html.
 	responses = []
 	for i in q_row:
 		print i.text
-		# question.append(q_row)
-		# question = range(len(question))
-		# print question
 		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
-		# print 'xxxxxxxxxxxxxxxxxxx',type(c_row), c_row
 		responses.append(c_row)
 		# Created idx_c_row for for loop optimization.
 		idx_c_row  = range(len(c_row))
 		for j in idx_c_row:
-			choice = c_row[j]
-			# print type(choice)
 			print c_row[j].text
-			# print 'Running through show_question'
 	return render_template('/question.html', responses=responses, q_row = q_row)
 
-@app.route('/question', methods=['POST'])
+#update answers REST api
+@app.route('/insert_score', methods=['POST'])
+#def update_answers()
 def insert_score():
-	#first get row
-	row = model.session.query(model.Question).all()
-	user_id = session['uid']
-	#update row with user info
-	new_row = Question(q_id=row.q_id, 
-		text = row.text,
-		category = row.category,
-		user_id=session['uid'], 
-		answer = answer)
-	#make new database row
-	session.add(new_row)
-	session.commit()	
-	return render_template('/question.html', new_row=question_list)
+	# Insert score into User_Choice db.
+	# Update row with user info.
+	# interitems() turns the immutable multidict into a something that is iterable
+	for question_id, answer_id in request.form.iteritems():
+		answer = get_or_create(model.session, model.User_Choice, question_id = question_id, user_id=session['uid'])  
+		# import pdb   <--- Awesome debugger!!!
+		# pdb.set_trace
+		answer.choice_id = answer_id
+		# Make a new database row.
+		# adding entire answer object
+		model.session.add(answer)
+		model.session.commit()	
+	return redirect('/')
 
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
 	b_row = model.session.query(model.Burrito).all()
 	return render_template('/all_sexy_burrito.html', burritrows=b_row) 
 
-#id is included as part of hte url
+# id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
 	sexy_b = model.session.query(model.Burrito).get(id)
