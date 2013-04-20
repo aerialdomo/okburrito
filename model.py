@@ -54,6 +54,7 @@ class Burrito(Base):
 	resturant = relationship('Resturant', backref=backref('resturants'), order_by=id)
 
 class Burrito_Attribute(Base):
+	# This class is for anything in Burrito that can be ranked by Integer.
 	__tablename__='burrito_attributes'
 
 	id = Column(Integer, primary_key=True)
@@ -64,6 +65,10 @@ class Burrito_Attribute(Base):
 	# exotic = Column(Integer)
 	# size = Column(Integer)
 	# meat = Column(String(64), nullable=True)
+	burrito_id = Column(Integer, ForeignKey('burritos.id'))
+
+	uno_burrito = relationship('Burrito', backref=backref('burritos'), order_by=id)
+
 
 class Question(Base):	
 	__tablename__='questions'

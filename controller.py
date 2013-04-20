@@ -138,5 +138,7 @@ def one_sexy_burrito(id):
 	print 'vvvvvvvv', sexy_b.self_sum
 	return render_template('/one_sexy_burrito.html', sexy_b=sexy_b)
 
+#calcuate the score!!!!	
+
 if __name__ == "__main__":
 	app.run(debug = True)
