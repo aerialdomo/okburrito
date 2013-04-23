@@ -1,14 +1,13 @@
-#database .3 beta
-#ok.db
-
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Integer, String, VARCHAR #DECIMAl!!!
+from sqlalchemy import Column, Integer, String, VARCHAR
+from sqlalchemy.dialects.mysql import TINYINT
 #sqlalchemy session is a handle to interact with db
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 #no longer need to instantiate Session class
-engine = create_engine("mysql://christinaliu@localhost/burrito", echo=False)
+engine = create_engine("mysql://christinaliu@127.0.0.1/burrito", echo=False)
+#need a password for db 
 session = scoped_session(sessionmaker(bind=engine, 
 									autocommit = False, 
 									autoflush = False))
@@ -61,6 +60,7 @@ class Burrito_Attribute(Base):
 	name = Column(String(64))
 	monies = Column(Integer, nullable=False)
 	spicy = Column(Integer)
+	seafood = Column(Integer)
 	# structure = Column(Integer)
 	# exotic = Column(Integer)
 	# size = Column(Integer)
@@ -92,10 +92,11 @@ class User_Choice(Base):
 	__tablename__='user_choices'
 
 	id = Column(Integer, primary_key=True)	
+	#answers still need to be removed from mysql
 	# weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
 	# score = Column(Integer)#Decimal(2,2)	
 	question_id= Column(Integer, ForeignKey('questions.id'))
-	choice_id = Column(Integer, ForeignKey('choices.id'))
+	choice_id = Column(Integer, ForeignKey('choices.id'), nullable=True)
 	user_id = Column(Integer, ForeignKey('users.id'))
 
 	choice = relationship('Choice', backref=backref('user_choices'), order_by=id)
