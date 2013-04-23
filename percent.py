@@ -33,7 +33,8 @@ def get_data(session):
 	#Get all question that have been answered
 
 	q_answered = model.session.query(model.Question.category, func.count('*')).\
-				filter(model.User_Choice.question_id==model.Question.id and model.User_Choice.user_id==uid).\
+				filter(model.User_Choice.question_id==model.Question.id).\
+				filter(model.User_Choice.user_id==uid).\
 				group_by(model.Question.category).all()
 	#currently getting total count of questions in category
 	print q_answered		
