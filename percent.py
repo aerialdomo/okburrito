@@ -38,18 +38,16 @@ def get_data(session):
 		group_by(model.Question.category).all()
 	#currently getting total count of questions in category, which is also the max_cat_score
 	#this is a list of tuples
-	print 'Mamimum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2]
-	 #max_cat_score
+	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2]
 
 	#what is User score?
 	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
 		filter(model.User_Choice.choice_id==model.Choice.id).\
 		filter(model.User_Choice.question_id==model.Question.id).\
-		filter(model.User_Choice.user_id==uid).all()
-		# group_by(model.Question.category).all()
-		# filter(model.User_Choice.user_id==uid).\
+		filter(model.User_Choice.user_id==uid).\
+		group_by(model.Question.category).all()
 		
-	print type(user_cat_score), 'user_cat_score:',user_cat_score[0]
+	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2]
 	
 # def calc_percent(session):
 # 	max_category_score= #pull from question db
