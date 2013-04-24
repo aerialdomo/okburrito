@@ -32,30 +32,29 @@ uid = 2
 def get_data(session):
 	#Get all question that have been answered
 
-	q_answered = model.session.query(model.Question.category, func.count('*')).\
-				filter(model.User_Choice.question_id==model.Question.id).\
-				filter(model.User_Choice.user_id==uid).\
-				group_by(model.Question.category).all()
-	#currently getting total count of questions in category
-	print q_answered		
+	max_cat_score = model.session.query(model.Question.category, func.count(Question.id)).\
+		filter(model.User_Choice.question_id==model.Question.id).\
+		filter(model.User_Choice.user_id==uid).\
+		group_by(model.Question.category).all()
+	#currently getting total count of questions in category, which is also the max_cat_score
+	#this is a list of tuples
+	print 'Mamimum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2]
+	 #max_cat_score
+
+	#what is User score?
+	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
+		filter(model.User_Choice.choice_id==model.Choice.id).\
+		filter(model.User_Choice.question_id==model.Question.id).\
+		filter(model.User_Choice.user_id==uid).all()
+		# group_by(model.Question.category).all()
+		# filter(model.User_Choice.user_id==uid).\
+		
+	print type(user_cat_score), 'user_cat_score:',user_cat_score[0]
 	
-	# q_answered = model.session.query(model.User_Choice).filter_by(user_id=uid).all()
-	# print "LENGTH", len(q_answered)
-	# for idx in range(len(q_answered)):
-	# 	print 'question_id:', q_answered[idx].question_id, "User_ID:", q_answered[idx].user_id
-	# 	print q_answered[idx].question.text
-	# 	print q_answered[idx].choice.text
-	# 	print q_answered[idx].choice.score
-	# 	print q_answered[idx].question.category
-
-
-	# 	q_category = model.session.query(model.Question).group_by(model.Question.category).all()
-	# 	print "TROUBLE", type(q_category), q_category[idx].category
-
-
 # def calc_percent(session):
 # 	max_category_score= #pull from question db
 # 	percent = total_score/max_category_score
+
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
