@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
+#figure out what the g is for
 from flaskext.gravatar import Gravatar 
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm.exc import NoResultFound
@@ -7,7 +8,7 @@ from sqlalchemy.orm.exc import NoResultFound
 import model 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@localhost/burrito"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@127.0.0.1/burrito"
 db = SQLAlchemy(app)
 app.secret_key = 'stuff'
 
@@ -84,13 +85,13 @@ def authenticate():
 @app.route('/my_profile')
 def my_profile():
 
-	profile	= model.session.query(model.User).filter_by(id = session['uid']).all()
+	profile	= model.session.query(model.User).filter_by(id=session['uid']).all()
 	print "This be my profile yo"
 
 	gravatar = Gravatar(app, 
-						size = 100)
+						size=100)
 
-	return render_template('/my_profile.html', profile = profile)
+	return render_template('/my_profile.html', profile=profile)
 
 @app.route('/show_question') #this is a GET request
 def show_question():
@@ -100,32 +101,38 @@ def show_question():
 	responses = []
 	for i in q_row:
 		print i.text
-		c_row = model.session.query(model.Choice).filter_by(question_id = i.id).all()
+		c_row = model.session.query(model.Choice).filter_by(question_id=i.id).all()
 		responses.append(c_row)
 		# Created idx_c_row for for loop optimization.
 		idx_c_row  = range(len(c_row))
 		for j in idx_c_row:
 			print c_row[j].text
-	return render_template('/question.html', responses=responses, q_row = q_row)
+	return render_template('/question.html', responses=responses, q_row=q_row)
 
 #update answers REST api
 @app.route('/insert_score', methods=['POST'])
 #def update_answers()
 def insert_score():
-	# Insert score into User_Choice db.
-	# Update row with user info.
 	# interitems() turns the immutable multidict into a something that is iterable
 	for question_id, answer_id in request.form.iteritems():
-		answer = get_or_create(model.session, model.User_Choice, question_id = question_id, user_id=session['uid'])  
+		answer = get_or_create(model.session, model.User_Choice, question_id=question_id, user_id=session['uid'])  
 		# import pdb   <--- Awesome debugger!!!
 		# pdb.set_trace
 		answer.choice_id = answer_id
-		# Make a new database row.
 		# adding entire answer object
 		model.session.add(answer)
 		model.session.commit()	
 	return redirect('/')
 
+
+def calculate_score():
+	# get row 
+	# from questions calculate percentage relation to the burrito score
+	# if 5 is 100%, how much weight does this one question have if there is only 1 question.
+	questions_answered = model.session.query(model.User_Choice).filter_by(user_id=session['uid']).all()
+	print '!!!!!!!!!!!!!!!!', type(questions_answered), questions_answered[0]
+	return 
+ 
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
 	b_row = model.session.query(model.Burrito).all()
@@ -135,10 +142,8 @@ def all_sexy_burrito():
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
 	sexy_b = model.session.query(model.Burrito).get(id)
-	print 'vvvvvvvv', sexy_b.self_sum
 	return render_template('/one_sexy_burrito.html', sexy_b=sexy_b)
 
-#calcuate the score!!!!	
 
 if __name__ == "__main__":
 	app.run(debug = True)
