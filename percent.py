@@ -48,6 +48,8 @@ def get_data(session):
 		group_by(model.Question.category).all()
 		
 	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2]
+
+	
 	
 # def calc_percent(session):
 # 	max_category_score= #pull from question db
