@@ -2,7 +2,7 @@ import csv, sys
 
 from flask import Flask, session, g
 import model
-from model import User, Burrito, Question, User_Choice, Choice, Restaurant
+from model import User, Burrito, Burrito_Attribute, Question, User_Choice, Choice, Restaurant
 #create an object
 #add object to db???? session
 #commit
@@ -15,7 +15,7 @@ def get_or_create(session, model_class, **kwargs):
 		instance = model_class(**kwargs)
 		return instance	
 
-def import_resturant(session):
+def import_restaurant(session):
 
 	with open('Hb_burrito.csv', 'rb') as csvfile:
 		f = csv.reader(csvfile, delimiter=',')
@@ -26,7 +26,6 @@ def import_resturant(session):
 		# print rest_reader
 		for lines in f:
 			add_object = get_or_create(model.session, model.Restaurant, name=lines[1], neighborhood=lines[2])
-			# add_object = Resturant(name=lines[1], neighborhood=lines[2])
 			# print add_object[1]
 			# print add_object.name
 			model.session.add(add_object)
@@ -34,18 +33,42 @@ def import_resturant(session):
 
 def import_burrito(session):
 		
-		with open('Hb_burrito.csv', 'rb') as csvfile:
+	with open('Hb_burrito.csv', 'rb') as csvfile:
 		bu_reader = csv.reader(csvfile, delimiter=',')
 		header_line = bu_reader.next()
 
+		#how to insert restaurant id
+
+
 		for lines in bu_reader:
-			add_object = get_or_create
+			r= model.session.query(model.Restaurant).filter(model.Restaurant.name==lines[1]).all()
+			
+			add_object = get_or_create(model.session, model.Burrito, diet=lines[4], restaurant_id=r[0].id)
+			model.session.add(add_object)
 
-		
+			add_bur_attribute = get_or_create(model.session, model.Burrito_Attribute, name=lines[0], 
+				protien=lines[5], bean=lines[6], rice=lines[7], monies=lines[8], spicy=lines[9], 
+				size=lines[10],structure=lines[11], special=lines[12], exotic=lines[13], 
+				self_sum=lines[14], burrito_id=add_object.id)
+			# print add_bur_attribute
+			model.session.add(add_bur_attribute)
 
+		model.session.commit()	
+
+def import_questions(session):
+	with open('Questions.csv', 'rb') as csvfile:
+		table_reader = csv.reader(csvfile, delimiter=',')
+		header_line = table_reader.next()
+
+		for lines in table_reader:
+			add_questions = get_or_create(model.session, model.Question, text=lines[0], category=lines[1])
+			print add_questions.text
+			model.session.add(add_questions)	
 
 def main(session):
-	import_resturant(session)
+	# import_restaurant(session)
+	# import_burrito(session)
+	import_questions(session)
 
 
 if __name__ == "__main__":
