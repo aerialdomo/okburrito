@@ -45,26 +45,27 @@ class Burrito(Base):
 
 	id = Column(Integer, primary_key=True) 
 	diet = Column(String(64), nullable=True)
-	resturant = Column(String(64), nullable=True)
-	image = Column(VARCHAR(512))
-	resturant_id = Column(Integer, ForeignKey('restaurants.id'))
+	restaurant_id = Column(Integer, ForeignKey('restaurants.id'))
 	
-	resturant = relationship('Restaurant', backref=backref('restaurants'), order_by=id)
+	restaurant = relationship('Restaurant', backref=backref('restaurants'), order_by=id)
 
 class Burrito_Attribute(Base):
 	# This class is for anything in Burrito that can be ranked by Integer.
 	__tablename__='burrito_attributes'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(64))
-	self_sum = Column(String(256), nullable=True)
-	monies = Column(Integer, nullable=False)
-	spicy = Column(Integer)
-	seafood = Column(Integer)
-	# structure = Column(Integer)
-	# exotic = Column(Integer)
-	# size = Column(Integer)
-	# meat = Column(String(64), nullable=True)
+	name = Column(String(64), nullable=False)
+	protien = Column(String(64), nullable=False)
+	bean = Column(String(64), nullable=True)
+	rice = Column(TINYINT(1), nullable=True)
+	monies = Column(Integer, nullable=False)	
+	spicy = Column(Integer, nullable=False)
+	size = Column(Integer, nullable=False)
+	structure = Column(Integer, nullable =False)
+	special = Column(String(256), nullable=True)
+	exotic = Column(String(256),nullable=True)
+	self_sum = Column(String(256), nullable=False)
+	image = Column(VARCHAR(512), nullable=True)
 	burrito_id = Column(Integer, ForeignKey('burritos.id'))
 
 	burrito = relationship('Burrito', backref=backref('burritos'), order_by=id)
@@ -75,15 +76,15 @@ class Question(Base):
 
 	id = Column(Integer, primary_key=True)
 	q_id = Column(Integer)
-	text = Column(String(256))
-	category = Column(String(64))
+	text = Column(String(256), nullable=False)
+	category = Column(String(64), nullable=False)
 
 class Choice(Base):
 	__tablename__='choices'
 
 	id = Column(Integer, primary_key=True)
-	text = Column(String(256))
-	score = Column(Integer) 			#(1, 0, -1)
+	text = Column(String(256), nullable=False)
+	score = Column(Integer, nullable=False) 			#(1, 0, -1)
 	question_id = Column(Integer, ForeignKey('questions.id'))
 	
 	question = relationship('Question', backref=backref('choices'), order_by=id)
@@ -92,11 +93,8 @@ class User_Choice(Base):
 	__tablename__='user_choices'
 
 	id = Column(Integer, primary_key=True)	
-	#answers still need to be removed from mysql
-	# weight = Column(Integer)#Decimal(5,2) leave out atm for simplicity
-	# score = Column(Integer)#Decimal(2,2)	
 	question_id= Column(Integer, ForeignKey('questions.id'))
-	choice_id = Column(Integer, ForeignKey('choices.id'), nullable=True)
+	choice_id = Column(Integer, ForeignKey('choices.id'))
 	user_id = Column(Integer, ForeignKey('users.id'))
 
 	choice = relationship('Choice', backref=backref('user_choices'), order_by=id)
