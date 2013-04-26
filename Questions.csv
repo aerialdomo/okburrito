@@ -1,5 +1,11 @@
-ID, Text,Category,Choice 1,c1_score,Choice 2,c2_score,Choice 3,c3_score
-1,Pick a Pokemon,spicy,Bulbasaur,0,Squirtle,-1,Charmander,1
-2,Finish this word: B,structure,....,eeeeeeeeeees,0,urrito,1,WTF?,-1
-3,Can you make it rain?,monies,Define rain,0,Dry as a desert,-1,Like a hurricane,1
-4,Which is bigger:,size,Glass half full,1,Glass half empty,-1,A full glass,1
+id,Text,Category
+1,Pick a Pokemon,spicy
+2,Finish this word: B....,structure
+3,Can you make it rain?,monies
+4,Which is bigger:,size
+5,Do you like fire?,spicy
+6,Finish this line: Now this is the story all about how ... ,structure
+7,How pesos make up a dollar?,monies
+8,"Which Star Trek does this line come from: ""Make it so""",size
+9,Which color do you like better?,spicy
+10,Descirbe your appetite level:,size

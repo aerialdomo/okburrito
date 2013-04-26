@@ -1,6 +1,6 @@
 from flask import Flask, session, g
 import model
-from model import User, Burrito, Question, User_Choice, Choice, Resturant
+from model import User, Burrito, Question, User_Choice, Choice, Restaurant
 from sqlalchemy.sql import func
 
 
@@ -27,7 +27,7 @@ user_info = {'user_id':3, 'answer':1}
 # 		- if 100% of 1 q is 100%, then what is 100% of 10 qs
 # 		- 
 # 	- match percentage
-uid = 2
+uid = 1
 
 def get_data(session):
 	#Get all question that have been answered
@@ -38,7 +38,8 @@ def get_data(session):
 		group_by(model.Question.category).all()
 	#currently getting total count of questions in category, which is also the max_cat_score
 	#this is a list of tuples
-	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2]
+	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2], max_cat_score[3]
+	# print max_cat_score[0][0]
 
 	#what is User score?
 	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
@@ -47,9 +48,13 @@ def get_data(session):
 		filter(model.User_Choice.user_id==uid).\
 		group_by(model.Question.category).all()
 		
-	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2]
+	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2], user_cat_score[3]
 
-	
+	for idx in range(len(user_cat_score)):
+		# for inner_idx in range(len(idx)):
+		user_percent = user_cat_score[idx][1]/max_cat_score[idx][1]
+		# if user_percent
+		print idx, user_percent
 	
 # def calc_percent(session):
 # 	max_category_score= #pull from question db
