@@ -38,7 +38,7 @@ def get_data(session):
 		group_by(model.Question.category).all()
 	#currently getting total count of questions in category, which is also the max_cat_score
 	#this is a list of tuples
-	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2], max_cat_score[3]
+	# print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2], max_cat_score[3]
 	# print max_cat_score[0][0]
 
 	#what is User score?
@@ -48,22 +48,45 @@ def get_data(session):
 		filter(model.User_Choice.user_id==uid).\
 		group_by(model.Question.category).all()
 		
-	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2], user_cat_score[3]
+	# print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2], user_cat_score[3]
 
+	user_percent = []
+	fields = []
+	# score_dict={}
 	for idx in range(len(user_cat_score)):
 		# for inner_idx in range(len(idx)):
-		user_percent = user_cat_score[idx][1]/max_cat_score[idx][1]
-		# if user_percent
-		print idx, user_percent
-	
-# def calc_percent(session):
-# 	max_category_score= #pull from question db
-# 	percent = total_score/max_category_score
+		score = user_cat_score[idx][1]/max_cat_score[idx][1]
+		# print 'SCORE', user_cat_score[idx][0], 
+		fields.append(user_cat_score[idx][0])
+		user_percent.append(score)
+		score_dict = dict(zip(fields, user_percent))
+	return score_dict
+
+def matcher(session, score_dict):
+	#match burrito to user
+	#get burrito number
+	#do i need to turn it into a %
+	#set user_percent == burrito percent
+
+	burrito = model.session.query(model.Burrito_Attribute).all()
+
+	for idx in range(len(burrito)): 
+		b_percent = float(burrito[idx].spicy)/5
+		if score_dict['spicy']<= b_percent - .2 and score_dict>= b_percent +.2:
+			print burrito[idx].name
+		
+
+
+	# print score_dict
+
 
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
-	get_data(session)
+	score_dict = get_data(session)
+	matcher(session, score_dict)
+
+
 	
 
 
