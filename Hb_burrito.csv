@@ -1,16 +1,21 @@
-Your Name(optional),Restaurant,Neighborhood(if in SF),City,"Meat, Vegetarian, Vegan","type of protein(chicken, pork,egg, beef, tofu?)","Bean Type(black, refried, pinto, none?)",Rice(yes:1 / no:0),"Price Level(Please use # 1-5: 1: 1-7 dollars, 2 8-12 dollars, 3: etc)","How spicy(1: not spicy, 5: Mordor is in your mouth)","Size(1:size of a hummingbird, 5:size of human baby)","Structure: (1:so messy it might as well not be wrapped, 5:can support a building)",Special Sauces?,"Exotic Ingrediants(ie) magic beans, raw fish, non-traditional items)",Other Notes:
-Valencia,Papalotte,Mission,SF,vegan,tofu,black,1,2,1,4,2,mole,,enough for 2 meals
-Haight,Zona Rosa,Haight,SF,Meat,pork,pinto,0,2,3,3,4,salsa verde,,best in SF!
-Tourist,Chipotle,Downtown,SF,vegetarian,none,black,1,1,1,4,3,,,what about burrito /bowls/ -- do those count?!
-NyantoCat,Sugar Cafe,Union Square,SF,meat,bacon,none,0,2,1,4,4,none,,"breakfast burrito - had potatos, egg, lots of veggies"
-Folsom,Chavo's,SoMa,SF,meat,chicken,pinto,0,1,1,4,2,none,,"chavo's chicken is not great, carnitas or steak is better"
-Macy's,Chipotle,Union Square,SF,meat,pork,black,1,2,2,4,4,none,none,
-Stockton,Sugar Cafe,Union Square,SF,vegetarian,egg,none,0,1,1,3,4,"yes, dunno what type",none,
-Espresso,Coffeebar,Mission,SF,Meat,egg and chorizo,none,0,1,1,3,4,,potato,
-GGPark,El Castellito,Lower Haight,SF,Meat,beef or pork,black,0,1,2,3,4,"salsa verde, salsa roja",,
-Naan desu,Curry up Now,Mission,SF/San Mateo/Truck,Meat,chicken,garbanzo,1,2,5,4,4,,Indian!!! in a burrito,Never been to the one in SF yet...
-Windmill,Pancho Villa,Mission,SF/San Mateo ,Meat,beef or pork,black,0,1,2,3,3,"salsa verde, salsa roja",,Burritow Bowl is great
-Powell,Jasmin's Cafe,Union Square,SF,Meat,chicken,black,1,2,3,4,3,none,,
-Kearny,Chipotle,Union Square,SF,vegan,tofu,black,1,1,1,4,3,corn salsa,,"Good for the Earth, good for the stomache."
-Pierre,El Metate,Mission,SF,meat,shrimp,black,1,2,1,4,4,,,
-Microwave,Trader Joes,Nob Hill,SF,vegan,veggie,black,0,1,1,2,2,,,Frozen microwave burrito
+Your Name(optional),Restaurant,Neighborhood(if in SF),City,"Meat, Vegetarian, Vegan","type of protein(chicken, pork,egg, beef, tofu?)","Bean Type(black, refried, pinto, none?)",Rice(yes:1 / no:0),"Price Level(Please use # 1-5: 1: 1-7 dollars, 2 8-12 dollars, 3: etc)","How spicy(1: not spicy, 5: Mordor is in your mouth)","Size(1:size of a hummingbird, 5:size of human baby)","Structure: (1:so messy it might as well not be wrapped, 5:can support a building)",Special Sauces?,"Exotic Ingrediants(ie) magic beans, raw fish, non-traditional items)",Other Notes:,Image
+Valencia,Papalotte,Mission,SF,vegan,tofu,black,1,2,1,4,2,mole,,enough for 2 meals,http://s3-media3.ak.yelpcdn.com/bphoto/dqFW-1DDI9h0m7en81TrmQ/l.jpg
+Haight,Zona Rosa,Haight,SF,Meat,pork,pinto,0,2,3,3,4,salsa verde,,best in SF!,http://s3-media2.ak.yelpcdn.com/bphoto/GZ2gZi0E-ieaC97XTg5dqw/l.jpg
+Tourist,Chipotle,Downtown,SF,vegetarian,none,black,1,1,1,4,3,,,what about burrito /bowls/ -- do those count?!,http://s3-media1.ak.yelpcdn.com/bphoto/DG738xsMmxXultajIhqn1Q/l.jpg
+NyantoCat,Sugar Cafe,Union Square,SF,meat,bacon,none,0,2,1,4,4,none,,"breakfast burrito - had potatos, egg, lots of veggies",http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg
+Folsom,Chavo's,SoMa,SF,meat,chicken,pinto,0,1,1,4,2,none,,"chavo's chicken is not great, carnitas or steak is better",http://s3-media2.ak.yelpcdn.com/bphoto/w200hkUQolUisodDBm-T_A/l.jpg
+Macy's,Chipotle,Union Square,SF,meat,pork,black,1,2,2,4,4,none,none,"I may be everywhere, but I'm still tasty!",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg
+Stockton,Sugar Cafe,Union Square,SF,vegetarian,egg,none,0,1,1,3,4,"yes, dunno what type",none,Yes you may borrow a cup of Sugar!,http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg
+Espresso,Coffeebar,Mission,SF,Meat,egg and chorizo,none,0,1,1,3,4,,potato,NOM NOM NOM,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg
+GGPark,El Castellito,Lower Haight,SF,Meat,beef or pork,black,0,1,2,3,4,"salsa verde, salsa roja",,,http://s3-media3.ak.yelpcdn.com/bphoto/os424EZPq06rgLNGHr14fQ/l.jpg
+Naan desu,Curry up Now,Mission,SF/San Mateo/Truck,Meat,chicken,garbanzo,1,2,5,4,4,,Indian!!! in a burrito,Never been to the one in SF yet...,http://s3-media4.ak.yelpcdn.com/bphoto/qJWS1IOj_cF0DI8Ltb1Tpg/l.jpg
+Windmill,Pancho Villa,Mission,SF/San Mateo ,Meat,beef or pork,black,0,1,2,3,3,"salsa verde, salsa roja",,Burritow Bowl is great,http://s3-media2.ak.yelpcdn.com/bphoto/O2SSf_9ES8CsH5lnXvGT-Q/l.jpg
+Powell,Jasmin's Cafe,Union Square,SF,Meat,chicken,black,1,2,3,4,3,none,,,http://s3-media2.ak.yelpcdn.com/bphoto/kOdgFMuHkeYbxPUf4A3ajg/l.jpg
+Kearny,Chipotle,Union Square,SF,vegan,tofu,black,1,1,1,4,3,corn salsa,,"Good for the Earth, good for the stomache.",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg
+Pierre,El Metate,Mission,SF,meat,shrimp,black,1,2,1,4,4,,,"Just because I'm shrimpy, doesn't mean I won't satisfy!",http://www.yelp.com/biz_photos/el-metate-san-francisco?selected=MsQd14GLYHTslDgEoGU_tA#6Ra1LgWxSV30u4okutlgiA
+Microwave,Trader Joes,Nob Hill,SF,vegan,veggie,black,0,1,1,2,2,,,Frozen microwave burrito,http://www.makeupandbeautyblog.com/wp-content/uploads/2010/12/trader-joes-frozen-burrito.jpg
+The Maharaja,Curry up Now,Mission,SF,vegan,tofu,none,0,2,4,3,4,,,I'm hot and spicy. Team me up with a mango mint lassi.,http://s3-media4.ak.yelpcdn.com/bphoto/omqwa99qJtRuYRBw6rjJcw/l.jpg
+Carne Asada Tastebud Pleaser,El Metate,Mission,SF,meat,beef or pork,black,1,2,1,4,3,,,I'm beefy and delicious.,http://s3-media2.ak.yelpcdn.com/bphoto/xPGnuyrEqLCsV9Mo70mc-Q/l.jpg
+Buddah Boy,Sushiritto,Financial ,SF,vegan,tofu,none,1,2,1,3,3,,,Miso delicious.,http://s3-media2.ak.yelpcdn.com/bphoto/mYHJFwExY6g4Uz-PEcd8zg/l.jpg
+Sumo Crunch,Sushiritto,Financial ,SF,meat,"shrimp, krab",none,1,3,1,3,3,,,Look how delicious I am.,http://s3-media2.ak.yelpcdn.com/bphoto/-7YkZ9Ub73wb6ceMNofTqQ/l.jpg
+Desayuno,Coffeebar,Mission,SF,vegetarian,egg,none,0,1,1,3,4,,,Better than sliced bread!,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg

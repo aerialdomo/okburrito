@@ -6,6 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 
 import model 
+# from model import Burrito_Attribute
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@127.0.0.1/burrito"
@@ -126,12 +127,32 @@ def insert_score():
 
 
 def calculate_score():
-	# get row 
-	# from questions calculate percentage relation to the burrito score
-	# if 5 is 100%, how much weight does this one question have if there is only 1 question.
-	questions_answered = model.session.query(model.User_Choice).filter_by(user_id=session['uid']).all()
-	print '!!!!!!!!!!!!!!!!', type(questions_answered), questions_answered[0]
-	return 
+
+	#Get all question that have been answered
+
+	max_cat_score = model.session.query(model.Question.category, func.count(Question.id)).\
+		filter(model.User_Choice.question_id==model.Question.id).\
+		filter(model.User_Choice.user_id==uid).\
+		group_by(model.Question.category).all()
+	#currently getting total count of questions in category, which is also the max_cat_score
+	#this is a list of tuples
+	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2], max_cat_score[3]
+	# print max_cat_score[0][0]
+
+	#what is User score?
+	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
+		filter(model.User_Choice.choice_id==model.Choice.id).\
+		filter(model.User_Choice.question_id==model.Question.id).\
+		filter(model.User_Choice.user_id==uid).\
+		group_by(model.Question.category).all()
+		
+	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2], user_cat_score[3]
+
+	for idx in range(len(user_cat_score)):
+		# for inner_idx in range(len(idx)):
+		user_percent = user_cat_score[idx][1]/max_cat_score[idx][1]
+		# if user_percent
+		print idx, user_percent 
  
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
@@ -141,8 +162,11 @@ def all_sexy_burrito():
 # id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
-	sexy_b = model.session.query(model.Burrito).get(id)
-	return render_template('/one_sexy_burrito.html', sexy_b=sexy_b)
+	main_b = model.session.query(model.Burrito).get(id)
+	#sexy_b is a list
+	sexy_b = model.session.query(model.Burrito_Attribute).filter_by(burrito_id=main_b.id).all()
+	print len(sexy_b)
+	return render_template('/one_sexy_burrito.html', main_b=main_b, sexy_b=sexy_b[0])
 
 
 if __name__ == "__main__":
