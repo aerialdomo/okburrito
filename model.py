@@ -1,7 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Integer, String, VARCHAR
-from sqlalchemy.dialects.mysql import TINYINT
+from sqlalchemy import Column, Integer, String, Boolean
+
 #sqlalchemy session is a handle to interact with db
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
@@ -45,37 +45,27 @@ class Burrito(Base):
 
 	id = Column(Integer, primary_key=True) 
 	diet = Column(String(64), nullable=True)
-	restaurant_id = Column(Integer, ForeignKey('restaurants.id'))
-	
-	restaurant = relationship('Restaurant', backref=backref('restaurants'), order_by=id)
-
-class Burrito_Attribute(Base):
-	# This class is for anything in Burrito that can be ranked by Integer.
-	__tablename__='burrito_attributes'
-
-	id = Column(Integer, primary_key=True)
 	name = Column(String(64), nullable=False)
 	protien = Column(String(64), nullable=False)
 	bean = Column(String(64), nullable=True)
-	rice = Column(TINYINT(1), nullable=True)
+	rice = Column(Boolean(), nullable=True)
 	monies = Column(Integer, nullable=False)	
 	spicy = Column(Integer, nullable=False)
 	size = Column(Integer, nullable=False)
 	structure = Column(Integer, nullable =False)
 	special = Column(String(256), nullable=True)
 	exotic = Column(String(256),nullable=True)
-	self_sum = Column(String(256), nullable=False)
-	image = Column(VARCHAR(512), nullable=True)
-	burrito_id = Column(Integer, ForeignKey('burritos.id'))
-
-	burrito = relationship('Burrito', backref=backref('burritos'), order_by=id)
+	self_sum = Column(String(1024), nullable=False)
+	image = Column(String(1024), nullable=True)
+	restaurant_id = Column(Integer, ForeignKey('restaurants.id'))
+	
+	restaurant = relationship('Restaurant', backref=backref('restaurants'), order_by=id)
 
 
 class Question(Base):	
 	__tablename__='questions'
 
 	id = Column(Integer, primary_key=True)
-	q_id = Column(Integer)
 	text = Column(String(256), nullable=False)
 	category = Column(String(64), nullable=False)
 

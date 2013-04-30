@@ -3,7 +3,7 @@ import csv, sys
 from flask import Flask, session, g
 import model 
 
-from model import User, Burrito, Burrito_Attribute, Question, User_Choice, Choice, Restaurant
+from model import User, Burrito, Question, User_Choice, Choice, Restaurant
 from collections import namedtuple
 #create an object
 #add object to db???? session
@@ -44,16 +44,14 @@ def import_burrito(session):
 		for lines in bu_reader:
 			r= model.session.query(model.Restaurant).filter(model.Restaurant.name==lines[1]).all()
 
-			add_burrito = get_or_create(model.session, model.Burrito, diet=lines[4], restaurant_id=r[0].id)
-			model.session.add(add_burrito)
-			model.session.commit()
-
-			add_bur_attribute = get_or_create(model.session, model.Burrito_Attribute, name=lines[0], 
+			add_burrito = get_or_create(model.session, model.Burrito, diet=lines[4], name=lines[0], 
 				protien=lines[5], bean=lines[6], rice=lines[7], monies=lines[8], spicy=lines[9], 
 				size=lines[10],structure=lines[11], special=lines[12], exotic=lines[13], 
-				self_sum=lines[14], image=lines[15], burrito_id=add_burrito.id)
-			# print add_bur_attribute
-			model.session.add(add_bur_attribute)	
+				self_sum=lines[14], image=lines[15])
+			
+			model.session.add(add_burrito)
+			model.session.commit()
+			
 
 		model.session.commit()	 
 
@@ -113,9 +111,9 @@ def import_questions(session):
 # 		model.session.commit()	
 
 def main(session):
-	import_restaurant(session)
+	# import_restaurant(session)
 	import_burrito(session)
-	import_questions(session)
+	# import_questions(session)
 	# import_choices(session)
 
 
