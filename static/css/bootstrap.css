@@ -111,6 +111,9 @@ body {
   line-height: 18px;
   color: #333333;
   background-color: #ffffff;
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
 }
 a {
   color: #0088cc;
