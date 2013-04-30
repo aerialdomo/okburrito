@@ -164,11 +164,9 @@ def all_sexy_burrito():
 # id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
-	main_b = model.session.query(model.Burrito).get(id)
-	#sexy_b is a list
-	sexy_b = model.session.query(model.Burrito_Attribute).filter_by(burrito_id=main_b.id).all()
-	print len(sexy_b)
-	return render_template('/one_sexy_burrito.html', main_b=main_b, sexy_b=sexy_b[0])
+	sexy_burrito = model.session.query(model.Burrito).get(id)
+
+	return render_template('/one_sexy_burrito.html', sexy_burrito=sexy_burrito)
 
 
 if __name__ == "__main__":
