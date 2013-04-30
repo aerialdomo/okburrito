@@ -3,21 +3,6 @@ import model
 from model import User, Burrito, Question, User_Choice, Choice, Restaurant
 from sqlalchemy.sql import func
 
-
-#psuedo code .2
-# opinion needs to get clicked via checkbox
-# when opinion picked, needs to relate to -1 to 1
-# insert opinion into db
-# user needs to choose a weight, which spans 0-1 
-# insert weight into database
-# opinion * weight = score
-# insert score into a Category in db
-# Category needs to be displayed in bar graph
-
-# opinion = {'pikachu': 1,
-# 		   'squirtle': 1,
-# 		   'charmander': 1}
-
 # get user_id via sessions instead of hard code
 user_info = {'user_id':3, 'answer':1}
 
@@ -27,7 +12,7 @@ user_info = {'user_id':3, 'answer':1}
 # 		- if 100% of 1 q is 100%, then what is 100% of 10 qs
 # 		- 
 # 	- match percentage
-uid = 1
+uid = 2
 
 def get_data(session):
 	#Get all question that have been answered
@@ -52,7 +37,7 @@ def get_data(session):
 
 	user_percent = []
 	fields = []
-	# score_dict={}
+	score_dict={}
 	for idx in range(len(user_cat_score)):
 		# for inner_idx in range(len(idx)):
 		score = user_cat_score[idx][1]/max_cat_score[idx][1]
@@ -60,6 +45,7 @@ def get_data(session):
 		fields.append(user_cat_score[idx][0])
 		user_percent.append(score)
 		score_dict = dict(zip(fields, user_percent))
+	print "SCORE DICT",score_dict	
 	return score_dict
 
 def matcher(session, score_dict):
@@ -67,22 +53,32 @@ def matcher(session, score_dict):
 	#get burrito number
 	#do i need to turn it into a %
 	#set user_percent == burrito percent
+	user_diet=model.session.query(model.User).filter_by(id=uid).one()
+	print "User Diet", user_diet.diet
 
-	burrito = model.session.query(model.Burrito_Attribute).all()
+	burrito = model.session.query(model.Burrito).filter_by(diet=user_diet.diet).all()
 
-	for idx in range(len(burrito)): 
-		b_percent = float(burrito[idx].spicy)/5
-		if score_dict['spicy']<= b_percent - .2 and score_dict>= b_percent +.2:
-			print burrito[idx].name
+	for idx in range(len(burrito)):
+		print burrito[idx].diet
+
+
+
+	# for idx in range(len(burrito)): 
+	# 	b_percent = float(burrito[idx].size) / 5
+	# 	# print b_percent
+	# 	# print score_dict['spicy']
+	# 	if score_dict['size']<= (b_percent - .1) and score_dict['size']>= (b_percent + .1):
+	# 		print burrito[idx].name
 		
 
 
-	# print score_dict
+	# print score_dict['size']
 
 
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
+	# get_data(session)
 	score_dict = get_data(session)
 	matcher(session, score_dict)
 
