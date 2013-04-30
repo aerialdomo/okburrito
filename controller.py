@@ -156,8 +156,10 @@ def calculate_score():
  
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
-	b_row = model.session.query(model.Burrito).all()
-	return render_template('/all_sexy_burrito.html', burritrows=b_row) 
+	#getting burrito id
+	burritrows = model.session.query(model.Burrito).all()
+	
+	return render_template('/all_sexy_burrito.html', burritrows=burritrows)
 
 # id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')

@@ -4,13 +4,12 @@
 <h1>Go ahead, unwrap these burritO...h my!</h1>
 
 	{% for burrito in burritrows %}
-		<ul class='thumbnails'>
+		<ul class='thumbnails's>
 		<li>{{burrito.id}}</li>
 		<li><a href='/one_sexy_burrito/{{burrito.id}}' class='thumbnail'>
 		<img src='{{burrito.image}}' class='thumbnails' width='150' height='150'/></a></li>
-		<li><strong>SAY MY NAME!!!!</strong></li>
+		<li><strong>{{burrito.name}}</strong></li>
 		<li>{{burrito.diet}}</li>
-		<li>{{burrito.self_sum}}</li>
 		</ul>
 	{% endfor %}
 {% endblock %}
