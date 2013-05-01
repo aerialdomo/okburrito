@@ -1,35 +1,26 @@
 from flask import Flask, session, g
 import model
 from model import User, Burrito, Question, User_Choice, Choice, Restaurant
+from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
-# get user_id via sessions instead of hard code
-user_info = {'user_id':3, 'answer':1}
+from controller import *
 
-# Braining-
-# 	- burrito score goes in chuncks of 20's to get 100%
-# 	- user data can then be a percentage, 
-# 		- if 100% of 1 q is 100%, then what is 100% of 10 qs
-# 		- 
-# 	- match percentage
-uid = 2
 
 def get_data(session):
 	#Get all question that have been answered
 	max_cat_score = model.session.query(model.Question.category, func.count(Question.id)).\
 		filter(model.User_Choice.question_id==model.Question.id).\
-		filter(model.User_Choice.user_id==uid).\
+		filter(model.User_Choice.user_id==session['uid']).\
 		group_by(model.Question.category).all()
 
 	#what is User score?
 	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
 		filter(model.User_Choice.choice_id==model.Choice.id).\
 		filter(model.User_Choice.question_id==model.Question.id).\
-		filter(model.User_Choice.user_id==uid).\
+		filter(model.User_Choice.user_id==session['uid']).\
 		group_by(model.Question.category).all()
 		
-
-
 	user_percent = []
 	fields = []
 	score_dict={}
@@ -43,10 +34,10 @@ def get_data(session):
 
 def matcher(session, score_dict):
 
-	user_diet = model.session.query(model.User).filter_by(id=uid).one()
+	user_diet = model.session.query(model.User).filter_by(id=session['uid']).one()
 	burrito = model.session.query(model.Burrito).filter_by(diet=user_diet.diet).all()
 
-	burrito_match = []
+	burritrows = []
 	error_rate = .30
 	burrito_max = 5
 	for idx in range(len(burrito)):
@@ -57,35 +48,22 @@ def matcher(session, score_dict):
 		size_percent = float(burrito[idx].size) / burrito_max
 		structure_percent = float(burrito[idx].structure) / burrito_max
 
-		print "burritos monies", monies_percent
-		print 'spicy_percent', spicy_percent
-		print "Size", size_percent
-		print "struture", structure_percent
-		print score_dict
-	
 		if (score_dict['monies'] >= (monies_percent - error_rate)) and (score_dict['monies'] <= (monies_percent +error_rate)):
 			counter += 1
-			print "!!! monies"
 		if (score_dict['spicy'] >= (spicy_percent - error_rate)) and (score_dict['spicy'] <= (spicy_percent +error_rate)):
 			counter += 1
-			print '!!! spicy'
 		if (score_dict['size'] >= (size_percent - error_rate)) and (score_dict['size'] <= (size_percent + error_rate)):
 			counter += 1
-			print '!!! size'
 		if (score_dict['structure'] >= (structure_percent - error_rate)) and (score_dict['structure'] <= (structure_percent + error_rate)): 		
 			counter += 1
-			print '!!! structure'
-
-		print 'COUNTER',counter	
+	
 		if counter >= 2:
-			burrito_match.append(burrito[idx])
+			burritrows.append(burrito[idx])
 
-		print burrito_match
-
+	return burritrows
 
 def main(session):
 	# You'll call each of the load_* functions with the session as an argument
-	# get_data(session)
 	score_dict = get_data(session)
 	matcher(session, score_dict)
 

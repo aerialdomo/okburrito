@@ -3,9 +3,10 @@ from flask import Flask, render_template, redirect, url_for, request, session, g
 from flaskext.gravatar import Gravatar 
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.sql import func
 
 
-import model 
+import model, percent
 # from model import Burrito_Attribute
 
 app = Flask(__name__)
@@ -89,8 +90,7 @@ def my_profile():
 	profile	= model.session.query(model.User).filter_by(id=session['uid']).all()
 	print "This be my profile yo"
 
-	gravatar = Gravatar(app, 
-						size=100)
+	gravatar = Gravatar(app, size=100)
 
 	return render_template('/my_profile.html', profile=profile)
 
@@ -112,7 +112,6 @@ def show_question():
 
 #update answers REST api
 @app.route('/insert_score', methods=['POST'])
-#def update_answers()
 def insert_score():
 	# interitems() turns the immutable multidict into a something that is iterable
 	for question_id, answer_id in request.form.iteritems():
@@ -123,43 +122,22 @@ def insert_score():
 		# adding entire answer object
 		model.session.add(answer)
 		model.session.commit()	
-	return redirect('/')
+	return redirect('all_sexy_burrito',)
 
-
-def calculate_score():
-
-	#Get all question that have been answered
-
-	max_cat_score = model.session.query(model.Question.category, func.count(Question.id)).\
-		filter(model.User_Choice.question_id==model.Question.id).\
-		filter(model.User_Choice.user_id==uid).\
-		group_by(model.Question.category).all()
-	#currently getting total count of questions in category, which is also the max_cat_score
-	#this is a list of tuples
-	print 'Maximum Category Score:', max_cat_score[0], max_cat_score[1], max_cat_score[2], max_cat_score[3]
-	# print max_cat_score[0][0]
-
-	#what is User score?
-	user_cat_score = model.session.query(model.Question.category, func.sum(Choice.score)).\
-		filter(model.User_Choice.choice_id==model.Choice.id).\
-		filter(model.User_Choice.question_id==model.Question.id).\
-		filter(model.User_Choice.user_id==uid).\
-		group_by(model.Question.category).all()
-		
-	print'User_cat_score:',user_cat_score[0],user_cat_score[1],user_cat_score[2], user_cat_score[3]
-
-	for idx in range(len(user_cat_score)):
-		# for inner_idx in range(len(idx)):
-		user_percent = user_cat_score[idx][1]/max_cat_score[idx][1]
-		# if user_percent
-		print idx, user_percent 
- 
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
 	#getting burrito id
-	burritrows = model.session.query(model.Burrito).all()
-	
+	score_dict = percent.get_data(session)
+	burritrows = percent.matcher(session, score_dict)
+	# user_diet = model.session.query(model.User).filter_by(id=session['uid']).first()
+	# print "USER DIET", user_diet.diet
+	# print "BURRITO DIET", burritrows[4].diet
+	# for burrito in range(len(burritrows)):
+		# if user_diet.diet == burritrows[burrito].diet:
 	return render_template('/all_sexy_burrito.html', burritrows=burritrows)
+
+		# else:
+			# return redirect('/')	
 
 # id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')
