@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>Go ahead, unwrap these burritO...h my!</h1>
 
+
 	{% for burrito in burritrows %}
-		<ul class='thumbnails's>
-		<li>{{burrito.id}}</li>
-		<li><a href='/one_sexy_burrito/{{burrito.id}}' class='thumbnail'>
-		<img src='{{burrito.image}}' class='thumbnails' width='150' height='150'/></a></li>
-		<li><strong>{{burrito.name}}</strong></li>
-		<li>{{burrito.diet}}</li>
-		</ul>
+		<div class="row">
+			<ul class='thumbnails'>
+				<li>{{burrito.id}}</li>
+				<li><a href='/one_sexy_burrito/{{burrito.id}}' class='thumbnail'>
+				<img src='{{burrito.image}}' class='thumbnails' width='150' height='150'/></a></li>
+				<li><strong>{{burrito.name}}</strong></li>
+				<li>{{burrito.diet}}</li>
+			</ul>
+		</div>	
 	{% endfor %}
+
 {% endblock %}

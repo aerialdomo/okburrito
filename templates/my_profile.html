@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	
-	{% for column in profile %}
-	<h1>Hola {{column.screenname}} ! Que tal?</h1>
-	<ul class='unstyled'>
-	<li><img src="{{'column.email'|gravatar(size=100)}}"/></li>	
-	<li>{{column.diet}}</li>	
-	{% endfor %}
-	</ul>
-	<a href='/show_question'>answer questions</a>
-{% endblock %}	
+
+
+		{% for column in profile %}
+			
+			<ul class='unstyled'>
+				<li><img src="{{'column.email'|gravatar(size=100)}}"/></li>	
+				<li>{{column.diet}}</li>	
+				<li>My Self Summary:</li>
+				<li>Neutra retro helvetica art party. Selvage cardigan brunch carles. Gastropub selvage food truck hashtag YOLO, deep v photo booth kale chips. Farm-to-table chambray tonx bushwick freegan fanny pack. Flexitarian wes anderson readymade williamsburg, actually literally american apparel retro beard hashtag. Blog aesthetic freegan selvage, brooklyn raw denim pork belly shoreditch mlkshk. Twee direct trade biodiesel, terry richardson letterpress portland lomo vice selfies artisan iphone pitchfork godard meggings.</li>
+			</ul>
+		{% endfor %}
+			
+
+
+{% endblock %}			

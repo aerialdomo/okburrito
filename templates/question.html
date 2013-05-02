@@ -4,15 +4,21 @@
 
 <div>
 <form method='POST' action='/insert_score'>
-	
+	<div>
+
 	{% for question in q_row %}
 		<h2>{{ question.text }}</h2>
 		{% for answer in question.choices %}
-			<input type='radio' id='{{question.id}}' name='{{question.id}}' value='{{answer.id}}'>
-			<label for='{{answer.id}}' class='radio'>{{answer.text}}</label>		
+			<label class="radio">	
+				<span class="icon"></span>	
+				<span class="icon-to-fade"></span>
+				<input type='radio' id='{{question.id}}' name='{{question.id}}' value='{{answer.id}}'>
+				{{answer.text}}
+			</label>		
 		{% endfor %}	
 	{% endfor %}	
 	
+	</div>
 
 	<button type='submit' class="btn">Submit</button>
 </form>	
