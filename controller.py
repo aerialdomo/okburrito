@@ -5,9 +5,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.sql import func
 
-
 import model, percent
-# from model import Burrito_Attribute
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@127.0.0.1/burrito"
@@ -101,7 +99,7 @@ def show_question():
 	# I need responses list to glom the c_row results together to pass into html.
 	responses = []
 	for i in q_row:
-		print i.text
+		# print i.text
 		c_row = model.session.query(model.Choice).filter_by(question_id=i.id).all()
 		responses.append(c_row)
 		# Created idx_c_row for for loop optimization.
@@ -129,22 +127,17 @@ def all_sexy_burrito():
 	#getting burrito id
 	score_dict = percent.get_data(session)
 	burritrows = percent.matcher(session, score_dict)
-	# user_diet = model.session.query(model.User).filter_by(id=session['uid']).first()
-	# print "USER DIET", user_diet.diet
-	# print "BURRITO DIET", burritrows[4].diet
-	# for burrito in range(len(burritrows)):
-		# if user_diet.diet == burritrows[burrito].diet:
 	return render_template('/all_sexy_burrito.html', burritrows=burritrows)
-
-		# else:
-			# return redirect('/')	
 
 # id is included as part of hte url.
 @app.route('/one_sexy_burrito/<int:id>')
 def one_sexy_burrito(id):
 	sexy_burrito = model.session.query(model.Burrito).get(id)
+	print sexy_burrito.restaurant_id
+	restaurant = model.session.query(model.Restaurant).filter_by(id=sexy_burrito.restaurant_id).one()
 
-	return render_template('/one_sexy_burrito.html', sexy_burrito=sexy_burrito)
+
+	return render_template('/one_sexy_burrito.html', sexy_burrito=sexy_burrito, restaurant=restaurant)
 
 
 if __name__ == "__main__":

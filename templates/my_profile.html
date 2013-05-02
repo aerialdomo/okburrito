@@ -3,9 +3,9 @@
 {% block content %}
 	
 	{% for column in profile %}
-	<h1>Hi {{column.email}} ! Welcome back!</h1>
-	<ul>
-	<li><img src="{{'column.id'|gravatar(size=100)}}"/></li>	
+	<h1>Hola {{column.screenname}} ! Que tal?</h1>
+	<ul class='unstyled'>
+	<li><img src="{{'column.email'|gravatar(size=100)}}"/></li>	
 	<li>{{column.diet}}</li>	
 	{% endfor %}
 	</ul>

@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div centered content>
  <img src='{{sexy_burrito.image}}'/>
  <br>
- {{sexy_burrito.name}}<br>
- {{sexy_burrito.protien}}<br>
- {{sexy_burrito.bean}}<br>
- {{sexy_burrito.rice}}<br>
- {{sexy_burrito.monies}}<br>
- {{sexy_burrito.special}}<br>
- {{sexy_burrito.exotic}}<br>
- {{sexy_burrito.self_sum}}<br>
- {{sexy_burrito.diet}}<br>
+ <div align='left'>
+ 	<h3>Send Text</h3>
+ </div>	
+ <h3 align='right'>Rate me!</h3>
+ 	<div class="rating">
+	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+	</div>
+</div>
+<div align='center'>
 
+ Name: {{sexy_burrito.name}}<br>
+ Protien: {{sexy_burrito.protien}}<br>
+ Bean: {{sexy_burrito.bean}}<br>
+ Rice?: {{sexy_burrito.rice}}<br>
+ Price: {{sexy_burrito.monies}}<br>
+ Special sauces?: {{sexy_burrito.special}}<br>
+ Exotic: {{sexy_burrito.exotic}}<br>
+ More about me: {{sexy_burrito.self_sum}}<br>
+ I am {{sexy_burrito.diet}}.<br>
 
+ Where can you find me? {{restaurant.name}}<br>
+</div>
 {% endblock %}
