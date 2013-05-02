@@ -21,6 +21,13 @@ def get_or_create(session, model_class, **kwargs):
 		instance = model_class(**kwargs)
 		return instance	
 
+@app.before_request
+def before_request():
+	if 'uid' in session.keys():
+		g.user = model.session.query(model.User).filter_by(id=session['uid']).one()
+	else:
+		g.user = None	
+
 @app.route('/')
 def index():
 	return "FooF"
