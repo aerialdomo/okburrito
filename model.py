@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 #no longer need to instantiate Session class
 engine = create_engine("mysql://christinaliu@127.0.0.1/burrito", echo=False)
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 #need a password for db 
 session = scoped_session(sessionmaker(bind=engine, 
