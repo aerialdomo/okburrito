@@ -12,17 +12,16 @@
 	</head>	
 
 	<body>
-	
-		
-
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span2"></div>
 				<div class="span2">
 					<!--Sidebar content-->
 					<ul class="unstyled">
+						<li><img src="/static/images/okburrito_logo.png"></li>
 						<li><a href="/all_sexy_burrito" class="btn btn-primary btn-block btn-large">Matches</a></li>
 						<li><a href="/show_question" class="btn btn-primary btn-block btn-large">Take Quiz</a></li>
+						<li><a href="/" class="btn btn-primary btn-block btn-large">Add Burrito</a></li>
 					</ul>
 				</div>
 				
@@ -33,9 +32,17 @@
 				</div>	
 				<div class="span2">
 					<div align="right"><a href="/logout" >Log Out</a></div>
-					<h4 align="right">Hola, {{g.user.screenname}} ! </h4>
+					<h4 align="right">Hola, <a href="/my_profile">{{g.user.screenname}}</a>!</h4>
+					<!-- <div>
+						Hola, 
+						<select value="X-Men" class="span3" tabindex="1" name="user">
+							<option value="0"><a href="/my_profile">{{g.user.screenname}}</a></option>
+							<option value="logout"><a href="/logout">Log Out</a></option>
+						</select>
+					</div>	 -->
+			
 			    </div>	
-			</div>
+			</div>	
 		</div>
 	<script src="http://code.jquery.com/jquery.js"></script>
    	<script src="/static/js/bootstrap.min.js"></script>
