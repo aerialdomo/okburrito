@@ -8,11 +8,9 @@
 	{% for burrito in burritrows %}
 		<div class="row">
 			<ul class='thumbnails'>
-				<li>{{burrito.id}}</li>
 				<li><a href='/one_sexy_burrito/{{burrito.id}}' class='thumbnail'>
 				<img src='{{burrito.image}}' class='thumbnails' width='150' height='150'/></a></li>
 				<li><strong>{{burrito.name}}</strong></li>
-				<li>{{burrito.diet}}</li>
 			</ul>
 		</div>	
 	{% endfor %}
