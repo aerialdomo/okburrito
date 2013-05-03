@@ -12,7 +12,8 @@ SELECT category, question_id FROM questions
 WHERE question_id IN (<Questions_Answered>)
 
 
- select u.*, q.category from user_choices u, questions q where u.question_id = q.id and u.user_id = 2;
+ SELECT u.*, q.category FROM user_choices u, questions q WHERE u.question_id = q.id AND u.user_id = 2;
+
  select q.category, count(*) from user_choices u, questions q where u.question_id = q.id and u.user_id = 2 group by category;
 
 
@@ -25,4 +26,7 @@ user_score = SELECT score FROM choices WHERE question_id in <Category_Question_i
 total_possible_score = SELECT SUM(score) from choices WHERE question_id IN <category_question_ids[key]>
 
 select category,count(*) from questions group by category;
+
+
+
 
