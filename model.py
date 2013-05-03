@@ -7,6 +7,8 @@ from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 #no longer need to instantiate Session class
 engine = create_engine("mysql://christinaliu@127.0.0.1/burrito", echo=False)
+Base.metadata.create_all(engine)
+
 #need a password for db 
 session = scoped_session(sessionmaker(bind=engine, 
 									autocommit = False, 
@@ -19,7 +21,6 @@ Session = None
 # OMFG remember to type in column names to the python to sql magic 
 # ie) u = models.User(nickname='john', email='john@email.com')
 Base = declarative_base()
-# Base.metadata.create_all(engine)
 Base.query = session.query_property()
 
 class User(Base):
