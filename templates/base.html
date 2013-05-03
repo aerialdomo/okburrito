@@ -16,15 +16,13 @@
 	<body>
 		<div>
 			<p class="center">
-			<img src="/static/images/flower.jpg">
+			<img src="/static/images/flower.jpg"/>
 			</p>
 		<div>
 		<div class="container-fluid contain">
 
 			<div class="row-fluid">
-			
-
-				<div class="span2 l_column">
+				<div class="span2 left_column" >
 					<!--Sidebar content-->
 					<ul class="unstyled">
 						<li><img src="/static/images/okburrito_logo.png"></li>
@@ -32,16 +30,21 @@
 						<li><a href="/show_question" class="btn btn-primary btn-block btn-large">Take Quiz</a></li>
 						<li><a href="/new_burrito" class="btn btn-primary btn-block btn-large">Add Burrito</a></li>
 					</ul>
+					<div class="block">
+						<p class="center">
+						<img src="/static/images/bluefly.jpg">
+						</p>
+					</div>	
 				</div>
 			    <div class="span8 content">
 					{% block content %}
 					{% endblock %}
 				</div>	
-				<div class="span2">
+				<div class="span2 right_column">
 					<div align="right"><a href="/logout" >Log Out</a></div>
 					<h4 align="right">Hola, <a href="/my_profile">{{g.user.screenname}}</a>!</h4>
 					<p>
-					<img src="/static/images/betabrand.jpg">	
+					<img src="/static/images/betabrand.jpg"/>	
 					<!-- <div>
 						Hola, 
 						<select value="X-Men" class="span3" tabindex="1" name="user">

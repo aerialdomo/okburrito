@@ -5,12 +5,18 @@
 
 		{% for column in profile %}
 			
-			<ul class='unstyled'>
-				<li><img src="{{'column.email'|gravatar(size=100)}}"/></li>	
-				<li>{{column.diet}}</li>	
-				<li>My Self Summary:</li>
-				<li>Neutra retro helvetica art party. Selvage cardigan brunch carles. Gastropub selvage food truck hashtag YOLO, deep v photo booth kale chips. Farm-to-table chambray tonx bushwick freegan fanny pack. Flexitarian wes anderson readymade williamsburg, actually literally american apparel retro beard hashtag. Blog aesthetic freegan selvage, brooklyn raw denim pork belly shoreditch mlkshk. Twee direct trade biodiesel, terry richardson letterpress portland lomo vice selfies artisan iphone pitchfork godard meggings.</li>
-			</ul>
+			<ul class="unstyled">
+				<img src="{{'column.email'|gravatar(size=100)}}"/>
+				<p>
+				My diet is <strong>{{column.diet}}</strong>! 	
+				<p>
+				<strong>My Self Summary:</strong>
+				<p>
+				Neutra retro helvetica art party. Selvage cardigan brunch carles. Gastropub selvage food truck hashtag YOLO, deep v photo booth kale chips. Farm-to-table chambray tonx bushwick freegan fanny pack. Flexitarian wes anderson readymade williamsburg, actually literally american apparel retro beard hashtag. Blog aesthetic freegan selvage, brooklyn raw denim pork belly shoreditch mlkshk. Twee direct trade biodiesel, terry richardson letterpress portland lomo vice selfies artisan iphone pitchfork godard meggings.
+				<p>
+				<strong>My Hobbies Are:</strong>	
+				<p>
+				Mustache odd future mlkshk, church-key sustainable tonx typewriter. Gastropub occupy wayfarers craft beer, 8-bit mustache 90's bushwick tattooed meggings umami lo-fi fap tonx. Beard brunch occupy, williamsburg american apparel actually semiotics art party banh mi hashtag. Try-hard echo park authentic, cred intelligentsia pop-up blog irony bicycle rights ugh. Deep v godard fixie, craft beer pickled readymade hashtag fashion axe echo park wolf mumblecore pug hella marfa. Skateboard truffaut etsy, meggings single-origin coffee fanny pack art party. Street art tousled blue bottle flexitarian cred.
 		{% endfor %}
 			
 

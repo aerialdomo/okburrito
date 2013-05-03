@@ -1368,6 +1368,7 @@ input.span8,
 textarea.span8,
 .uneditable-input.span8 {
   width: 606px;
+  padding: 10px 10px;
 }
 
 input.span7,

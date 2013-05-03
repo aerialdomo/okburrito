@@ -38,6 +38,7 @@ def  signup():
 
 @app.route('/signup', methods=['POST'])	
 def create_user():
+	print 'things might be A-OK'
 	# pull query from db to see if this use exists
 	# use if statements
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
@@ -128,6 +129,14 @@ def insert_score():
 		model.session.add(answer)
 		model.session.commit()	
 	return redirect('all_sexy_burrito',)
+
+@app.route('/new_burrito')	
+def new_burrito():
+	return render_template('/new_burrito.html')
+
+@app.route('/add_burrito')	
+def add_burrito():
+	pass
 
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():

@@ -43,11 +43,12 @@ def import_burrito(session):
 
 		for lines in bu_reader:
 			r= model.session.query(model.Restaurant).filter(model.Restaurant.name==lines[1]).all()
+			# print "RESTURANT ID", r[0].id
 
 			add_burrito = get_or_create(model.session, model.Burrito, diet=lines[4], name=lines[0], 
 				protien=lines[5], bean=lines[6], rice=lines[7], monies=lines[8], spicy=lines[9], 
 				size=lines[10],structure=lines[11], special=lines[12], exotic=lines[13], 
-				self_sum=lines[14], image=lines[15])
+				self_sum=lines[14], image=lines[15], restaurant_id=lines[16])
 			
 			model.session.add(add_burrito)
 			model.session.commit()
@@ -111,7 +112,7 @@ def import_questions(session):
 # 		model.session.commit()	
 
 def main(session):
-	# import_restaurant(session)
+	import_restaurant(session)
 	import_burrito(session)
 	# import_questions(session)
 	# import_choices(session)
