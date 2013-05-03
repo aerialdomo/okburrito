@@ -1,0 +1,49 @@
+body {
+	margin:10px 50px;
+	background-color: #27AE60;
+
+}
+
+.content {
+	background-color: #fff;
+	padding: 10px;
+}
+
+.sides {
+
+	background-color: #27AE60;
+}
+
+.l_column{
+	padding: 10px 10px 10px 10px;
+}
+
+.contain {
+	background-color: #BDC3C7;
+}
+
+.right{
+	float:right;
+}
+
+.right h3{
+	display: inline;
+}
+
+.left {
+	float: left;
+
+}
+
+.left h3 {
+	display: inline;
+
+} 
+
+.attributes{
+	display: block;
+}
+
+p.center{
+	text-align: center;
+}

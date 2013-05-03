@@ -9,30 +9,39 @@
 		   <!-- Loading Flat UI -->
    	 	<link href="/static/css/flat-ui.css" rel="stylesheet">
     	<link rel="shortcut icon" href="images/favicon.ico">
+    		<!--my css file!-->
+    	<link href="/static/css/style.css" rel="stylesheet">	
 	</head>	
 
 	<body>
-		<div class="container-fluid">
+		<div>
+			<p class="center">
+			<img src="/static/images/flower.jpg">
+			</p>
+		<div>
+		<div class="container-fluid contain">
+
 			<div class="row-fluid">
-				<div class="span2"></div>
-				<div class="span2">
+			
+
+				<div class="span2 l_column">
 					<!--Sidebar content-->
 					<ul class="unstyled">
 						<li><img src="/static/images/okburrito_logo.png"></li>
 						<li><a href="/all_sexy_burrito" class="btn btn-primary btn-block btn-large">Matches</a></li>
 						<li><a href="/show_question" class="btn btn-primary btn-block btn-large">Take Quiz</a></li>
-						<li><a href="/" class="btn btn-primary btn-block btn-large">Add Burrito</a></li>
+						<li><a href="/new_burrito" class="btn btn-primary btn-block btn-large">Add Burrito</a></li>
 					</ul>
 				</div>
-				
-			    <div class="span4">
+			    <div class="span8 content">
 					{% block content %}
 					{% endblock %}
-
 				</div>	
 				<div class="span2">
 					<div align="right"><a href="/logout" >Log Out</a></div>
 					<h4 align="right">Hola, <a href="/my_profile">{{g.user.screenname}}</a>!</h4>
+					<p>
+					<img src="/static/images/betabrand.jpg">	
 					<!-- <div>
 						Hola, 
 						<select value="X-Men" class="span3" tabindex="1" name="user">
@@ -40,21 +49,23 @@
 							<option value="logout"><a href="/logout">Log Out</a></option>
 						</select>
 					</div>	 -->
-			
+				
 			    </div>	
 			</div>	
 		</div>
+
 	<script src="http://code.jquery.com/jquery.js"></script>
    	<script src="/static/js/bootstrap.min.js"></script>
 	<script src="/static/js/jquery-1.8.2.min.js"></script>
-     <script src="/static/js/jquery-ui-1.10.0.custom.min.js"></script>
-     <script src="/static/js/jquery.dropkick-1.0.0.js"></script>
-     <script src="/static/js/custom_checkbox_and_radio.js"></script>
-     <script src="/static/js/custom_radio.js"></script>
-     <script src="/static/js/jquery.tagsinput.js"></script>
-     <script src="/static/js/bootstrap-tooltip.js"></script>
-     <script src="/static/js/jquery.placeholder.js"></script>
-     <script src="http://vjs.zencdn.net/c/video.js"></script>
-     <script src="/static/js/application.js"></script>
+    <script src="/static/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="/static/js/jquery.dropkick-1.0.0.js"></script>
+    <script src="/static/js/custom_checkbox_and_radio.js"></script>
+    <script src="/static/js/custom_radio.js"></script>
+    <script src="/static/js/jquery.tagsinput.js"></script>
+    <script src="/static/js/bootstrap-tooltip.js"></script>
+    <script src="/static/js/jquery.placeholder.js"></script>
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
+    <script src="/static/js/application.js"></script>
+
 	</body>
 </html>
