@@ -21,14 +21,21 @@ def get_data(session):
 		filter(model.User_Choice.user_id==session['uid']).\
 		group_by(model.Question.category).all()
 		
-	user_percent = []
-	fields = []
-	score_dict={}
+	# user_percent = []
+	# fields = []
+	score_dict={'monies': 0,'spicy':0,
+				'size': 0,'structure': 0}
+	# print "before the for"
 	for idx in range(len(user_cat_score)):
-		score = user_cat_score[idx][1]/max_cat_score[idx][1]
-		fields.append(user_cat_score[idx][0])
-		user_percent.append(score)
-		score_dict = dict(zip(fields, user_percent))
+		key = user_cat_score[idx][0]
+		value = user_cat_score[idx][1]/max_cat_score[idx][1]
+		score_dict[key] = value
+		# fields.append(user_cat_score[idx][0])
+		# user_percent.append(score)
+		# print "fields",fields
+		# print "user_percent", user_percent	
+	# score_dict = dict(zip(fields, user_percent))
+	print score_dict
 	
 	return score_dict
 

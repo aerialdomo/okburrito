@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session, g, flash
 #figure out what the g is for
 from flaskext.gravatar import Gravatar 
+from flaskext.bcrypt import Bcrypt, check_password_hash, generate_password_hash
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.sql import func
@@ -10,7 +11,8 @@ import model, percent
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://christinaliu@127.0.0.1/burrito"
 db = SQLAlchemy(app)
-app.secret_key = 'stuff'
+bcrypt = Bcrypt(app)
+app.secret_key = 'lute_music_while_coding_is_strange'
 
 def get_or_create(session, model_class, **kwargs):
 	instance = model.session.query(model_class).filter_by(**kwargs).first()
@@ -28,9 +30,9 @@ def before_request():
 	else:
 		g.user = None	
 
-@app.route('/')
+@app.route('/home.html')
 def index():
-	return "FooF"
+	return render_template('/home.html')
 
 @app.route('/signup.html')
 def  signup():
@@ -41,8 +43,9 @@ def create_user():
 	print 'things might be A-OK'
 	# pull query from db to see if this use exists
 	# use if statements
+	pw_hash = bcrypt.generate_password_hash(request.form['password'], 5)
 	new_user = model.User(screenname = request.form['screenname'], email = request.form['email'],
-							password = request.form['password'], diet = request.form['diet'])
+							password = pw_hash, diet = request.form['diet'])
 	#is this query right for matching screenname or email???
 	check = model.session.query(model.User).filter_by(screenname = new_user.screenname, 
 														email=new_user.email).all()
@@ -73,13 +76,15 @@ def logout():
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
+
 	form_screenname = request.form['screenname']
 	form_password = request.form['password']
 	#checks to see if user even exists in db
 	try:
 		#querying row from db so that we can compare form data to existing data
 		row = model.session.query(model.User).filter_by(screenname = form_screenname).one()
-		if (form_screenname == row.screenname) and (form_password == row.password):
+		pw_match = bcrypt.check_password_hash(row.password, form_password)
+		if (form_screenname == row.screenname) and (pw_match):
 				session['uid'] = row.id
 				return redirect(url_for('my_profile',))	
 	except NoResultFound:
