@@ -96,7 +96,12 @@ def my_profile():
 	profile	= model.session.query(model.User).filter_by(id=session['uid']).all()
 	print "This be my profile yo"
 
-	gravatar = Gravatar(app, size=100)
+	gravatar = Gravatar(app, 
+						size=200,
+						rating='g',
+	                    default='retro',
+	                    force_default=False,
+	                    force_lower=False)
 
 	return render_template('/my_profile.html', profile=profile)
 

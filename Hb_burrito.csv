@@ -1,22 +1,26 @@
 Your Name(optional),Restaurant,Neighborhood(if in SF),City,"Meat, Vegetarian, Vegan","type of protein(chicken, pork,egg, beef, tofu?)","Bean Type(black, refried, pinto, none?)",Rice(yes:1 / no:0),"Price Level(Please use # 1-5: 1: 1-7 dollars, 2 8-12 dollars, 3: etc)","How spicy(1: not spicy, 5: Mordor is in your mouth)","Size(1:size of a hummingbird, 5:size of human baby)","Structure: (1:so messy it might as well not be wrapped, 5:can support a building)",Special Sauces?,"Exotic Ingrediants(ie) magic beans, raw fish, non-traditional items)",Other Notes:,Image,restaurant id
-Valencia,Papalotte,Mission,SF,vegan,tofu,black,1,2,1,4,2,mole,,enough for 2 meals,http://s3-media3.ak.yelpcdn.com/bphoto/dqFW-1DDI9h0m7en81TrmQ/l.jpg,1
-Haight,Zona Rosa,Haight,SF,meat,pork,pinto,0,2,3,3,4,salsa verde,,best in SF!,http://s3-media2.ak.yelpcdn.com/bphoto/GZ2gZi0E-ieaC97XTg5dqw/l.jpg,2
-Tourist,Chipotle,Downtown,SF,vegetarian,none,black,1,1,1,4,3,,,what about burrito /bowls/ -- do those count?!,http://s3-media1.ak.yelpcdn.com/bphoto/DG738xsMmxXultajIhqn1Q/l.jpg,3
-NyantoCat,Sugar Cafe,Union Square,SF,meat,bacon,none,0,2,1,4,4,none,,"breakfast burrito - had potatos, egg, lots of veggies",http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg,4
-Folsom,Chavo's,SoMa,SF,meat,chicken,pinto,0,1,1,4,2,none,,"chavo's chicken is not great, carnitas or steak is better",http://s3-media2.ak.yelpcdn.com/bphoto/w200hkUQolUisodDBm-T_A/l.jpg,5
-Macy's,Chipotle,Union Square,SF,meat,pork,black,1,2,2,4,4,none,none,"I may be everywhere, but I'm still tasty!",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg,6
-Stockton,Sugar Cafe,Union Square,SF,vegetarian,egg,none,0,1,1,3,4,"yes, dunno what type",none,Yes you may borrow a cup of Sugar!,http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg,7
-Espresso,Coffeebar,Mission,SF,meat,egg and chorizo,none,0,1,1,3,4,,potato,NOM NOM NOM,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg,8
-GGPark,El Castellito,Lower Haight,SF,meat,beef or pork,black,0,1,2,3,4,"salsa verde, salsa roja",,,http://s3-media3.ak.yelpcdn.com/bphoto/os424EZPq06rgLNGHr14fQ/l.jpg,9
-Naan desu,Curry up Now,Mission,SF/San Mateo/Truck,meat,chicken,garbanzo,1,2,5,4,4,,Indian!!! in a burrito,Never been to the one in SF yet...,http://s3-media4.ak.yelpcdn.com/bphoto/qJWS1IOj_cF0DI8Ltb1Tpg/l.jpg,10
-Windmill,Pancho Villa,Mission,SF/San Mateo ,meat,beef or pork,black,0,1,2,3,3,"salsa verde, salsa roja",,Burritow Bowl is great,http://s3-media2.ak.yelpcdn.com/bphoto/O2SSf_9ES8CsH5lnXvGT-Q/l.jpg,11
-Powell,Jasmin's Cafe,Union Square,SF,meat,chicken,black,1,2,3,4,3,none,,,http://s3-media2.ak.yelpcdn.com/bphoto/kOdgFMuHkeYbxPUf4A3ajg/l.jpg,12
-Kearny,Chipotle,Union Square,SF,vegan,tofu,black,1,1,1,4,3,corn salsa,,"Good for the Earth, good for the stomache.",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg,13
-Pierre,El Metate,Mission,SF,meat,shrimp,black,1,2,1,4,4,,,"Just because I'm shrimpy, doesn't mean I won't satisfy!",http://www.yelp.com/biz_photos/el-metate-san-francisco?selected=MsQd14GLYHTslDgEoGU_tA#6Ra1LgWxSV30u4okutlgiA,14
+Tofu Mole,Papalotte,Mission,SF,vegan,tofu,black,1,2,1,4,2,mole,,enough for 2 meals,http://s3-media3.ak.yelpcdn.com/bphoto/dqFW-1DDI9h0m7en81TrmQ/l.jpg,1
+Pork Burrito,Zona Rosa,Haight,SF,meat,pork,pinto,0,2,3,3,4,salsa verde,,best in SF!,http://s3-media2.ak.yelpcdn.com/bphoto/GZ2gZi0E-ieaC97XTg5dqw/l.jpg,2
+Sofrito Burrito w/ sour cream,Chipotle,Downtown,SF,vegetarian,none,black,1,1,1,4,3,,,what about burrito /bowls/ -- do those count?!,http://s3-media1.ak.yelpcdn.com/bphoto/DG738xsMmxXultajIhqn1Q/l.jpg,3
+Breakfast Burrito,Sugar Cafe,Union Square,SF,meat,bacon,none,0,2,1,4,4,none,,"breakfast burrito - had potatos, egg, lots of veggies",http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg,4
+Chicken Burrito,Chavo's,SoMa,SF,meat,chicken,pinto,0,1,1,4,2,none,,"chavo's chicken is not great, carnitas or steak is better",http://s3-media2.ak.yelpcdn.com/bphoto/w200hkUQolUisodDBm-T_A/l.jpg,5
+Pork Burrito,Chipotle,Union Square,SF,meat,pork,black,1,2,2,4,4,none,none,"I may be everywhere, but I'm still tasty!",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg,6
+Breakfast Burrito,Sugar Cafe,Union Square,SF,vegetarian,egg,none,0,1,1,3,4,"yes, dunno what type",none,Yes you may borrow a cup of Sugar!,http://s3-media3.ak.yelpcdn.com/bphoto/t6fXpgQJfDNoD6nNGoeUdg/l.jpg,7
+Breakfast Burrito,Coffeebar,Mission,SF,meat,egg and chorizo,none,0,1,1,3,4,,potato,NOM NOM NOM,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg,8
+Unknown Meat,El Castellito,Lower Haight,SF,meat,beef or pork,black,0,1,2,3,4,"salsa verde, salsa roja",,,http://s3-media3.ak.yelpcdn.com/bphoto/os424EZPq06rgLNGHr14fQ/l.jpg,9
+Naan ,Curry up Now,Mission,SF/San Mateo/Truck,meat,chicken,garbanzo,1,2,5,4,4,,Indian!!! in a burrito,Never been to the one in SF yet...,http://s3-media4.ak.yelpcdn.com/bphoto/qJWS1IOj_cF0DI8Ltb1Tpg/l.jpg,10
+Beef Burrito,Pancho Villa,Mission,SF/San Mateo ,meat,beef ,black,0,1,2,3,3,"salsa verde, salsa roja",,Burritow Bowl is great,http://s3-media2.ak.yelpcdn.com/bphoto/O2SSf_9ES8CsH5lnXvGT-Q/l.jpg,11
+Chicken Burrito,Jasmin's Cafe,Union Square,SF,meat,chicken,black,1,2,3,4,3,none,,,http://s3-media2.ak.yelpcdn.com/bphoto/kOdgFMuHkeYbxPUf4A3ajg/l.jpg,12
+Sofrito Burrito,Chipotle,Union Square,SF,vegan,tofu,black,1,1,1,4,3,corn salsa,,"Good for the Earth, good for the stomache.",http://s3-media2.ak.yelpcdn.com/bphoto/pAYUs3fUx4MuZj-VcwNBKg/l.jpg,13
+Prawn Burrito,El Metate,Mission,SF,meat,shrimp,black,1,2,1,4,4,,,"Just because I'm shrimpy, doesn't mean I won't satisfy!",http://www.yelp.com/biz_photos/el-metate-san-francisco?selected=MsQd14GLYHTslDgEoGU_tA#6Ra1LgWxSV30u4okutlgiA,14
 Microwave,Trader Joes,Nob Hill,SF,vegan,veggie,black,0,1,1,2,2,,,Frozen microwave burrito,http://www.makeupandbeautyblog.com/wp-content/uploads/2010/12/trader-joes-frozen-burrito.jpg,15
 The Maharaja,Curry up Now,Mission,SF,vegan,tofu,none,0,2,4,3,4,,,I'm hot and spicy. Team me up with a mango mint lassi.,http://s3-media4.ak.yelpcdn.com/bphoto/omqwa99qJtRuYRBw6rjJcw/l.jpg,16
 Carne Asada Tastebud Pleaser,El Metate,Mission,SF,meat,beef or pork,black,1,2,1,4,3,,,I'm beefy and delicious.,http://s3-media2.ak.yelpcdn.com/bphoto/xPGnuyrEqLCsV9Mo70mc-Q/l.jpg,17
 Buddah Boy,Sushiritto,Financial ,SF,vegan,tofu,none,1,2,1,3,3,,,Miso delicious.,http://s3-media2.ak.yelpcdn.com/bphoto/mYHJFwExY6g4Uz-PEcd8zg/l.jpg,18
 Sumo Crunch,Sushiritto,Financial ,SF,meat,"shrimp, krab",none,1,3,1,3,3,,,Look how delicious I am.,http://s3-media2.ak.yelpcdn.com/bphoto/-7YkZ9Ub73wb6ceMNofTqQ/l.jpg,19
-Desayuno,Coffeebar,Mission,SF,vegetarian,egg,none,0,1,1,3,4,,,Better than sliced bread!,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg,20
+Veggie Breakfast Burrito,Coffeebar,Mission,SF,vegetarian,egg,none,0,1,1,3,4,,,Better than sliced bread!,http://s3-media1.ak.yelpcdn.com/bphoto/3fIXgOA_PXcviMjuGLxjXQ/l.jpg,20
 Chicken Burrito,El Metate,Mission,SF,meat,chicken,black,1,1,1,3,0,,,Good things come in small packages.,http://s3-media2.ak.yelpcdn.com/bphoto/n4xlsPNbSRAwMCp13t61iw/l.jpg,21
+Pollo Asado,Taqueria Vallerta,Mission,SF,meat,chicken,pinto,1,1,1,5,5,,,I can large and in charge!,http://s3-media2.ak.yelpcdn.com/bphoto/zDknj4Kb3T8_Lt0iez5buA/l.jpg,22
+Super Veggie,Taqueria Vallerta,Mission,SF,vegetarian,beans,pinto,1,1,1,5,5,,,I am delicious and ethical!,http://s3-media2.ak.yelpcdn.com/bphoto/zDknj4Kb3T8_Lt0iez5buA/l.jpg,22
+Bean and Rice ,Taqueria Vallerta,Mission,SF,vegan,beans,pinto,1,1,1,5,5,,,I am delicious and more ethical!,http://s3-media2.ak.yelpcdn.com/bphoto/zDknj4Kb3T8_Lt0iez5buA/l.jpg,22
+The Artery Clogger,Taco Bell,,,meat,beef ?,refried,0,1,1,1,1,,,"I'm a good burrito, I don't know why I always get food zoned?",http://s3-media4.ak.yelpcdn.com/bphoto/Ga63EKJU0CY6GmIx0Uj4hA/l.jpg,23
