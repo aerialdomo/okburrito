@@ -38,7 +38,7 @@ body {
 	padding:60px;
 	font-size: 32px;
 	background-color: #27AE60;
-	
+
 }
 
 .left h3 {
@@ -60,4 +60,10 @@ p.center{
 
 .carousel-caption p{
 	margin-bottom: 10px;
+}
+
+.burrito-splash{
+	width: 940px;
+	height: 450px;
+
 }
