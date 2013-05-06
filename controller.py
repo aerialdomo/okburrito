@@ -146,7 +146,7 @@ def new_burrito():
 
 @app.route('/add_burrito')	
 def add_burrito():
-	pass
+	pass	
 
 @app.route('/all_sexy_burrito')
 def all_sexy_burrito():
@@ -161,9 +161,12 @@ def one_sexy_burrito(id):
 	sexy_burrito = model.session.query(model.Burrito).get(id)
 	print sexy_burrito.restaurant_id
 	restaurant = model.session.query(model.Restaurant).filter_by(id=sexy_burrito.restaurant_id).one()
-
-
 	return render_template('/one_sexy_burrito.html', sexy_burrito=sexy_burrito, restaurant=restaurant)
+
+@app.route('/order')	
+def order_burrito():
+	return render_template('/order.html')
+
 
 
 if __name__ == "__main__":
