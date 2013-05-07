@@ -6,9 +6,9 @@
 		{% for column in profile %}
 			
 			<ul class="unstyled">
-				<img src="{{'column.email'|gravatar(size=200, rating='g')}}"/>
+				<img src="{{column.email|gravatar(size=200, rating='g')}}"/>
 				<p>
-				My diet is <strong>{{column.diet}}</strong>! 	
+				<h4>My diet is <strong>{{column.diet}}</strong>!</h4>
 				<p>
 				<strong>My Self Summary:</strong>
 				<p>

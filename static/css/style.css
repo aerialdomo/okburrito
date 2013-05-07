@@ -7,7 +7,6 @@ body {
 .content {
 	background-color: #fff;
 	padding: 10px;
-	he
 }
 
 .sides {
@@ -41,8 +40,9 @@ body {
 
 }
 
-.button3 {
+.order-btn {
 	font-size: 25px;
+	width: 145px;
 }
 
 .left h3 {
@@ -74,3 +74,17 @@ p.center{
 
 .link.green {
 	color: #1abc9c;
+}
+
+.row-fluid .span3, .span3 {
+	width: 313px;
+}
+
+.home-text {
+	color: #fff;
+}
+
+.login-pg-body {
+	background-color: #fff;
+}
+
