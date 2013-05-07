@@ -114,7 +114,7 @@ def import_questions(session):
 def main(session):
 	import_restaurant(session)
 	import_burrito(session)
-	import_questions(session)
+	# import_questions(session)
 	# import_choices(session)
 
 
